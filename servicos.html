@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Serviços | Terra Marcada</title>
+  <meta name="description" content="Georreferenciamento, regularização de imóveis, REURB, curvas de nível, ortomosaico, volumes e loteamentos. Conheça os serviços da Terra Marcada em Ijuí.">
+  <meta name="theme-color" content="#061C15">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="sites-incriveis.css">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body class="pg" data-pagina="servicos">
+<header class="nav" id="nav">
+  <a href="index.html" class="nav-logo" aria-label="Terra Marcada, início"><img src="assets/logo.png" alt="Terra Marcada" width="447" height="447"></a>
+  <nav class="nav-links" aria-label="Principal">
+    <a href="index.html">Início</a>
+    <a href="servicos.html" aria-current="page">Serviços</a>
+    <a href="documentacao.html">Documentação</a>
+    <a href="sobre.html">Quem somos</a>
+  </nav>
+  <a class="btn btn-sm" data-wa="Olá, Terra Marcada! Gostaria de um orçamento." href="https://wa.me/5555999345858">Pedir orçamento</a>
+</header>
+<main>
+<section class="pg-hero escuro">
+  <canvas data-terra="lines" class="terra-cv linhas" aria-hidden="true"></canvas>
+  <div class="pg-hero-in">
+    <p class="migalha"><a href="index.html">Início</a><span>/</span>Serviços</p>
+    <h1 data-fx="palavras" data-fx-duracao="800">Do voo do drone ao documento pronto.</h1>
+    <p data-fx="subir" data-fx-atraso="600">Escolha o seu caso e veja o que fazemos, para quem serve e o que você recebe.</p>
+  </div>
+</section>
+
+<section class="bloco areia claro" id="lista-servicos">
+  <div class="bloco-in">
+    <div class="filtros" role="group" aria-label="Filtrar serviços">
+      <button type="button" class="chip" data-filtro="todos" aria-pressed="true">Todos</button>
+      <button type="button" class="chip" data-filtro="rural" aria-pressed="false">Rural</button>
+      <button type="button" class="chip" data-filtro="urbano" aria-pressed="false">Urbano e REURB</button>
+      <button type="button" class="chip" data-filtro="obras" aria-pressed="false">Obras e projetos</button>
+      <button type="button" class="chip" data-filtro="publico" aria-pressed="false">Poder público</button>
+    </div>
+    <div class="svc-grade">
+<article class="svc" data-grupo="rural">
+  <h3>Georreferenciamento</h3>
+  <p>Limites do imóvel com coordenadas precisas, base para a documentação rural.</p>
+  <div class="tags"><i>Rural</i><i>Drone e GNSS</i></div>
+  <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
+  <div class="det"><div><dl>
+    <div><dt>O que é</dt><dd>Levantamento dos limites do imóvel com coordenadas, ligado ao sistema geodésico brasileiro.</dd></div>
+    <div><dt>Para quem</dt><dd>Proprietários rurais.</dd></div>
+    <div><dt>O que você recebe</dt><dd>Planta, memorial descritivo e coordenadas dos vértices.</dd></div>
+  </dl><a class="btn" data-wa="Olá, Terra Marcada! Tenho uma propriedade rural e quero georreferenciar." href="https://wa.me/5555999345858">Quero este serviço</a></div></div>
+</article>
+<article class="svc" data-grupo="urbano">
+  <h3>Regularização de imóvel</h3>
+  <p>Casa ou lote sem escritura? Cuidamos do levantamento e acompanhamos o processo.</p>
+  <div class="tags"><i>Urbano</i><i>Escritura</i></div>
+  <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
+  <div class="det"><div><dl>
+    <div><dt>O que é</dt><dd>Regularização de casas e lotes urbanos, com levantamento técnico e apoio na documentação até a escritura.</dd></div>
+    <div><dt>Para quem</dt><dd>Quem mora em imóvel sem escritura.</dd></div>
+    <div><dt>O que você recebe</dt><dd>Levantamento da área, orientação sobre documentos e acompanhamento. Garantia de sua casa ou lote regularizados.</dd></div>
+  </dl><a class="btn" data-wa="Olá, Terra Marcada! Quero regularizar meu imóvel." href="https://wa.me/5555999345858">Quero este serviço</a></div></div>
+</article>
+<article class="svc" data-grupo="urbano publico">
+  <h3>REURB</h3>
+  <p>Regularização Fundiária Urbana para legalizar assentamentos e dar escritura a quem mora.</p>
+  <div class="tags"><i>Urbano</i><i>Poder público</i></div>
+  <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
+  <div class="det"><div><dl>
+    <div><dt>O que é</dt><dd>Conjunto de medidas jurídicas, ambientais e sociais para legalizar assentamentos informais e dar escritura a moradores de áreas urbanas.</dd></div>
+    <div><dt>Para quem</dt><dd>Moradores, associações e prefeituras.</dd></div>
+    <div><dt>O que você recebe</dt><dd>Levantamento técnico da área e apoio nas etapas da regularização.</dd></div>
+  </dl><a class="btn" data-wa="Olá, Terra Marcada! Quero informações sobre REURB." href="https://wa.me/5555999345858">Quero este serviço</a></div></div>
+</article>
+<article class="svc" data-grupo="obras">
+  <h3>Levantamento planialtimétrico</h3>
+  <p>Posição e altura do terreno em uma planta, para projetar com segurança.</p>
+  <div class="tags"><i>Obras</i><i>Projetos</i></div>
+  <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
+  <div class="det"><div><dl>
+    <div><dt>O que é</dt><dd>Medição da posição e das alturas do terreno, mostradas em planta com curvas de nível.</dd></div>
+    <div><dt>Para quem</dt><dd>Engenheiros, arquitetos e construtoras.</dd></div>
+    <div><dt>O que você recebe</dt><dd>Planta com curvas de nível e cotas.</dd></div>
+  </dl><a class="btn" data-wa="Olá, Terra Marcada! Preciso de levantamento planialtimétrico." href="https://wa.me/5555999345858">Quero este serviço</a></div></div>
+</article>
+<article class="svc" data-grupo="rural obras">
+  <h3>Curvas de nível e relevo</h3>
+  <p>Veja cada subida e descida: onde a água corre e onde dá para construir.</p>
+  <div class="tags"><i>Rural</i><i>Obras</i></div>
+  <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
+  <div class="det"><div><dl>
+    <div><dt>O que é</dt><dd>Modelo do relevo do terreno, gerado a partir das imagens do drone e dos pontos de controle.</dd></div>
+    <div><dt>Para quem</dt><dd>Produtores, engenheiros e planejadores.</dd></div>
+    <div><dt>O que você recebe</dt><dd>Mapa com curvas de nível e modelo digital do terreno.</dd></div>
+  </dl><a class="btn" data-wa="Olá, Terra Marcada! Quero um mapa de curvas de nível." href="https://wa.me/5555999345858">Quero este serviço</a></div></div>
+</article>
+<article class="svc" data-grupo="rural obras publico">
+  <h3>Ortomosaico com drone</h3>
+  <p>Imagem aérea contínua, em alta resolução e escala real.</p>
+  <div class="tags"><i>Todos</i><i>Drone</i></div>
+  <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
+  <div class="det"><div><dl>
+    <div><dt>O que é</dt><dd>Uma imagem única da área, montada com as fotos do drone, em que é possível medir distâncias.</dd></div>
+    <div><dt>Para quem</dt><dd>Quem precisa planejar, acompanhar ou comprovar a situação de uma área.</dd></div>
+    <div><dt>O que você recebe</dt><dd>Imagem georreferenciada em alta resolução.</dd></div>
+  </dl><a class="btn" data-wa="Olá, Terra Marcada! Quero um ortomosaico da minha área." href="https://wa.me/5555999345858">Quero este serviço</a></div></div>
+</article>
+<article class="svc" data-grupo="obras">
+  <h3>Cálculo de volumes</h3>
+  <p>Aterros, cortes e estoques medidos com rapidez e sem expor equipes a risco.</p>
+  <div class="tags"><i>Obras</i></div>
+  <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
+  <div class="det"><div><dl>
+    <div><dt>O que é</dt><dd>Medição do volume de terra e de materiais a partir do modelo do terreno.</dd></div>
+    <div><dt>Para quem</dt><dd>Construtoras, mineradoras e quem controla estoques.</dd></div>
+    <div><dt>O que você recebe</dt><dd>Relatório de volumes e mapa da área medida.</dd></div>
+  </dl><a class="btn" data-wa="Olá, Terra Marcada! Preciso calcular volumes de aterro, corte ou estoque." href="https://wa.me/5555999345858">Quero este serviço</a></div></div>
+</article>
+<article class="svc" data-grupo="obras urbano">
+  <h3>Loteamentos e projetos</h3>
+  <p>Base cartográfica para loteamentos, obras e estudos de viabilidade.</p>
+  <div class="tags"><i>Obras</i><i>Urbano</i></div>
+  <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
+  <div class="det"><div><dl>
+    <div><dt>O que é</dt><dd>Levantamento e planta do terreno para apoiar o projeto de loteamentos e obras.</dd></div>
+    <div><dt>Para quem</dt><dd>Loteadores, incorporadores e projetistas.</dd></div>
+    <div><dt>O que você recebe</dt><dd>Planta planialtimétrica e base para o projeto.</dd></div>
+  </dl><a class="btn" data-wa="Olá, Terra Marcada! Tenho um loteamento ou projeto e preciso de base cartográfica." href="https://wa.me/5555999345858">Quero este serviço</a></div></div>
+</article>
+<article class="svc" data-grupo="publico">
+  <h3>Mapas para o poder público</h3>
+  <p>Mapas e imagens em alta resolução para planejar e regularizar a cidade.</p>
+  <div class="tags"><i>Poder público</i><i>Urbano</i></div>
+  <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
+  <div class="det"><div><dl>
+    <div><dt>O que é</dt><dd>Mapeamento de áreas do município com drone, para apoiar o planejamento e a regularização urbana.</dd></div>
+    <div><dt>Para quem</dt><dd>Prefeituras e órgãos públicos.</dd></div>
+    <div><dt>O que você recebe</dt><dd>Mapas, ortomosaicos e levantamentos da área.</dd></div>
+  </dl><a class="btn" data-wa="Olá, Terra Marcada! Represento um órgão público e gostaria de conversar sobre mapeamento." href="https://wa.me/5555999345858">Quero este serviço</a></div></div>
+</article>
+    </div>
+    <p class="aviso">Não achou o seu caso? Conte a situação do terreno pelo WhatsApp. Também mostramos <a href="documentacao.html" style="border-bottom:1px solid var(--ouro)">quais documentos reunir</a> antes de começar.</p>
+  </div>
+</section>
+<section class="chamada">
+  <div class="chamada-in">
+    <h2 data-fx="subir">Qual serviço serve para o seu terreno?</h2>
+    <a class="btn" data-wa="Olá, Terra Marcada! Quero ajuda para escolher o serviço certo para o meu terreno." href="https://wa.me/5555999345858">Falar com a equipe</a>
+  </div>
+</section>
+</main>
+<footer class="foot">
+  <div class="foot-in">
+    <div>
+      <span class="foot-logo"><img src="assets/logo.png" alt="Terra Marcada" width="447" height="447"></span>
+      <p>Mapeamento territorial e regularização de imóveis em Ijuí e região.</p>
+    </div>
+    <div>
+      <h3>Páginas</h3>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="servicos.html">Serviços</a></li>
+        <li><a href="documentacao.html">Documentação necessária</a></li>
+        <li><a href="sobre.html">Quem somos</a></li>
+        <li><a href="privacidade.html">Política de privacidade</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Contato</h3>
+      <ul>
+        <li><a data-wa="Olá, Terra Marcada! Gostaria de um orçamento." href="https://wa.me/5555999345858">WhatsApp (55) 99934-5858</a></li>
+        <li><a href="tel:+555533320990">(55) 3332-0990</a></li>
+        <li><a href="mailto:terramarcada@gmail.com">terramarcada@gmail.com</a></li>
+        <li>R. 19 de Outubro, nº 1289, Ijuí/RS</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-fim"><span>Terra Marcada® mapeamento territorial</span><span>© <span id="ano">2026</span></span></div>
+</footer>
+<script src="terrain.js" defer></script>
+<script src="sites-incriveis.js" defer></script>
+<script src="paginas.js" defer></script>
+</body>
+</html>
