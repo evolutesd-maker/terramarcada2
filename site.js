@@ -61,30 +61,20 @@
     return clamp(-r.top / (sec.offsetHeight - innerHeight));
   };
 
-  /* ---------- PICO: a carta se forma conforme a rolagem ---------- */
+  /* ---------- PICO: time lapse da carta (toca sozinho, sem depender da rolagem) ---------- */
   const secMapa = $('#mapa'), prancha = $('#prancha'), pMapa = $('#pranchaMapa'), scan = $('#scan');
   const g = {
     nb: $$('#cad .nb'), rd: $('#cad .rd'), lot: $('#cad .lot'), fill: $('#cad .lotfill'),
     vx: $$('#cad .vx'), vl: $$('#cad .vl'), dim: $$('#cad .dim'), bg: $$('#cad .dimbg'), ctl: $$('#cad .ctl')
   };
-  const eArea = $('#eArea'), ePer = $('#ePer');
-  let largP = 0, lastP = 0;
+  const eArea = $('#eArea'), ePer = $('#ePer'), rever = $('#rever');
+  let largP = 0;
   const medirPrancha = () => { largP = prancha.clientWidth; prancha.style.setProperty('--prancha-w', largP + 'px'); };
   medirPrancha(); addEventListener('resize', medirPrancha);
-
-  /* A varredura do drone começa sozinha assim que a cena prende na tela:
-     a pessoa recebe recompensa na hora, sem esperar a rolagem. */
-  let autoInicio = null, autoS = 0, autoRodando = false;
   const suaviza = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-  function autoVarredura(agora) {
-    if (autoInicio === null) return;
-    autoS = suaviza(clamp((agora - autoInicio) / 2600));
-    aplicar(lastP);
-    if (autoS < 1) requestAnimationFrame(autoVarredura); else autoRodando = false;
-  }
+  const TOTAL = 8000;                                 // duração do time lapse, em ms
 
-  function aplicar(p) {
-    const s = Math.max(autoS, clamp(p / .2));
+  function aplicar(p, s) {
     pMapa.style.clipPath = `inset(0 ${((1 - s) * 100).toFixed(2)}% 0 0)`;
     scan.style.opacity = s > .003 && s < .995 ? 1 : 0;
     scan.style.transform = `translateX(${(s * largP).toFixed(1)}px)`;
@@ -106,18 +96,32 @@
     eArea.textContent = fmt(area * n, 1);
     ePer.textContent = fmt(Math.round(perimetro * n), 0);
   }
-
-  function desenhar() {
-    const r = secMapa.getBoundingClientRect();
-    if (r.bottom < -50 || r.top > innerHeight + 50) return;
-    const p = prog(secMapa);
-    if (p < .003 && autoInicio !== null && !autoRodando) { autoInicio = null; autoS = 0; }   // saiu da cena: rearma
-    if (p > .01 && autoInicio === null && !reduce) { autoInicio = performance.now(); autoRodando = true; requestAnimationFrame(autoVarredura); }
-    if (Math.abs(p - lastP) < .001 && !autoRodando) return;
-    lastP = p;
-    aplicar(p);
+  function quadro(t) {
+    const k = clamp(t / TOTAL), p = k * .88;
+    aplicar(p, suaviza(clamp((t - 600) / 2800)));
+    prancha.style.setProperty('--zoom', (1 + .05 * k).toFixed(4));          // aproximação lenta, como câmera de time lapse
+    const passo = p < .33 ? 1 : p < .67 ? 2 : 3;
+    if (secMapa.dataset.passo !== String(passo)) secMapa.dataset.passo = passo;
   }
-  if (reduce) { eArea.textContent = fmt(area, 1); ePer.textContent = fmt(Math.round(perimetro), 0); }
+  let estado = 'parado', raf = 0;
+  function tocar() {
+    cancelAnimationFrame(raf);
+    estado = 'tocando'; secMapa.classList.remove('feito');
+    const t0 = performance.now();
+    const laco = agora => {
+      const t = agora - t0;
+      quadro(Math.min(t, TOTAL));
+      if (t < TOTAL) raf = requestAnimationFrame(laco); else { estado = 'feito'; secMapa.classList.add('feito'); }
+    };
+    raf = requestAnimationFrame(laco);
+  }
+  quadro(0);
+  if (reduce) { quadro(TOTAL); estado = 'feito'; }
+  else {
+    new IntersectionObserver(es => { if (es[0].isIntersecting && estado === 'parado') tocar(); }, { threshold: .55 }).observe(prancha);
+    new IntersectionObserver(es => { if (!es[0].isIntersecting && estado === 'feito') { estado = 'parado'; quadro(0); } }, { threshold: 0 }).observe(prancha);
+    rever.addEventListener('click', tocar);
+  }
 
   /* ---------- HUD: a rolagem é o voo ---------- */
   const hud = $('#hud'), pill = $('#waPill'), nav = $('#nav');
@@ -152,35 +156,6 @@
     hBar.style.width = (28 + Math.min(alt, 100) * .5) + 'px';
   }
 
-  /* ---------- Rota de voo: trilha lateral de progresso ---------- */
-  const rotaFill = $('#plvFill'), rotaDrone = $('#plvDrone'), rotaNav = $('#plv');
-  const rotaLinks = $$('#plv a');
-  const cenasRota = ['terra', 'problema', 'voo', 'mapa', 'rigor', 'servicos', 'contato'].map(id => document.getElementById(id));
-  let rotaAtual = -1, rotaTimer;
-  function atualizarRota() {
-    const vh = innerHeight;
-    let k = 0;
-    cenasRota.forEach((el, i) => { if (el.getBoundingClientRect().top <= vh * .5) k = i; });
-    const r = cenasRota[k].getBoundingClientRect();
-    const local = clamp((vh * .5 - r.top) / Math.max(1, r.height));
-    const pos = clamp((k + local) / (cenasRota.length - 1));
-    rotaNav.style.setProperty('--pos', pos.toFixed(4));
-    const alto = rotaNav.clientHeight - 30;
-    rotaDrone.style.transform = `translateY(${(15 + pos * alto).toFixed(1)}px)`;
-    if (k !== rotaAtual) {
-      rotaAtual = k;
-      rotaLinks.forEach((a, i) => {
-        a.classList.toggle('cur', i === k);
-        a.classList.toggle('passou', i < k);
-        if (i === k) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
-        a.classList.remove('flash');
-      });
-      rotaLinks[k].classList.add('flash');
-      clearTimeout(rotaTimer);
-      rotaTimer = setTimeout(() => rotaLinks[k].classList.remove('flash'), 1800);
-    }
-  }
-
   /* ---------- Régua de conferência ---------- */
   const regua = $('#regua'), entrada = $('#reguaIn'), puxador = $('#puxador');
   let larg = 0;
@@ -213,13 +188,11 @@
   /* ---------- Ciclo único de rolagem ---------- */
   if (!reduce) {
     let ag = false;
-    const tick = () => { ag = false; desenhar(); atualizarHud(); atualizarRota(); };
+    const tick = () => { ag = false; atualizarHud(); };
     addEventListener('scroll', () => { if (!ag) { ag = true; requestAnimationFrame(tick); } }, { passive: true });
     addEventListener('resize', tick);
     addEventListener('load', () => { medir(); medirPrancha(); });
     tick();
   } else {
-    pMapa.style.clipPath = 'none';
-    atualizarRota();
   }
 })();
