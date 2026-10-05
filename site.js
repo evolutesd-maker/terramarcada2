@@ -4,7 +4,7 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const WA = '5555999345858';
+  const WA = (window.TM && window.TM.whatsapp) || '5555999345858';
 
   /* Cada chamada leva a sua própria mensagem para o WhatsApp */
   $$('[data-wa]').forEach(a => {
@@ -132,19 +132,24 @@
   let ult = '', yAnt = 0;
   function atualizarHud() {
     const vh = innerHeight, y = scrollY;
-    pill.classList.toggle('on', hero.getBoundingClientRect().bottom < vh * .4);
+    // 1) todas as leituras de layout juntas, 2) depois as escritas (evita reflow forçado)
+    const topoHero = hero.getBoundingClientRect().bottom;
+    const topoVoo = trechos[0].el.getBoundingClientRect().top;
+    const caixas = trechos.map(t => t.el.getBoundingClientRect());
+    const altoDoc = document.documentElement.scrollHeight;
+    pill.classList.toggle('on', topoHero < vh * .4);
     nav.classList.toggle('sombra', y > 20);
-    nav.classList.toggle('some', y > yAnt && y > 500);
+    nav.classList.toggle('some', y > yAnt && y > 500 && !nav.querySelector('.nav-links.aberto'));
     yAnt = y;
-    hud.classList.toggle('on', trechos[0].el.getBoundingClientRect().top < vh * .75);
+    hud.classList.toggle('on', topoVoo < vh * .75);
     let alt = 0;
-    for (const t of trechos) {
-      const r = t.el.getBoundingClientRect();
+    for (let i = 0; i < trechos.length; i++) {
+      const r = caixas[i];
       if (r.top - vh * .5 > 0) break;
-      alt = t.a + (t.b - t.a) * clamp((vh * .5 - r.top) / r.height);
+      alt = trechos[i].a + (trechos[i].b - trechos[i].a) * clamp((vh * .5 - r.top) / r.height);
     }
     alt = Math.round(alt);
-    const f = y / Math.max(1, document.documentElement.scrollHeight - vh);
+    const f = y / Math.max(1, altoDoc - vh);
     const lat = (28.388 + f * .0042).toFixed(4), lon = (53.914 - f * .0036).toFixed(4);
     const chave = alt + lat + lon;
     if (chave === ult) return;

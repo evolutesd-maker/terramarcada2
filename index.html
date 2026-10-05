@@ -8,19 +8,27 @@
   <meta name="theme-color" content="#061C15">
   <meta property="og:title" content="Terra Marcada | Mapeamento territorial em Ijuí">
   <meta property="og:description" content="Cada metro da sua terra, no mapa certo. Mapeamento com drone, GNSS e regularização de imóveis.">
+  <meta property="og:image" content="assets/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
   <link rel="icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="sites-incriveis.css">
   <link rel="stylesheet" href="site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Terra Marcada","description":"Mapeamento territorial com drone e GNSS, regularização de imóveis e REURB em Ijuí e região.","telephone":"+55 55 3332-0990","email":"terramarcada@gmail.com","image":"assets/logo.png","address":{"@type":"PostalAddress","streetAddress":"R. 19 de Outubro, 1289","addressLocality":"Ijuí","addressRegion":"RS","addressCountry":"BR"},"areaServed":"Ijuí e região"}
+</script>
+<noscript><style>[data-fx]{opacity:1!important;transform:none!important}.terra-cv{display:none}.fx-etapa{opacity:1!important;visibility:visible!important}</style></noscript>
 </head>
 <body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
 <!-- Navegação -->
 <header class="nav" id="nav">
   <a href="#terra" class="nav-logo" aria-label="Terra Marcada, início"><img src="assets/logo.png" alt="Terra Marcada" width="447" height="447"></a>
-  <nav class="nav-links" aria-label="Principal">
+  <nav class="nav-links" id="menu" aria-label="Principal">
     <a href="#voo">Tecnologia</a>
     <a href="#mapa">O mapa</a>
     <a href="servicos.html">Serviços</a>
@@ -28,6 +36,7 @@
     <a href="sobre.html">Quem somos</a>
   </nav>
   <a class="btn btn-sm" data-wa="Olá, Terra Marcada! Gostaria de um orçamento." href="https://wa.me/5555999345858">Pedir orçamento</a>
+  <button type="button" class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
 </header>
 
 <!-- Painel de instrumentos do drone (ilustrativo) -->
@@ -43,7 +52,7 @@
   WhatsApp
 </a>
 
-<main>
+<main id="conteudo" tabindex="-1">
 
 <!-- 1 · TERRA -->
 <section class="hero escuro" id="terra">
@@ -64,7 +73,7 @@
       <svg class="rota" viewBox="0 0 600 600" aria-hidden="true"><path d="M20 520 C 140 380, 120 250, 260 230 S 460 300, 430 120 S 540 40, 580 60" pathLength="1"/></svg>
       <div class="ping"><i></i><i></i><i></i></div>
       <div class="anel"></div>
-      <img src="assets/drone-dji-air-3s.png" alt="Drone DJI Air 3S" width="720" height="720" class="hero-drone" fetchpriority="high">
+      <img src="assets/drone-dji-air-3s.webp" alt="Drone DJI Air 3S" width="720" height="720" class="hero-drone" fetchpriority="high">
       <span class="ficha f1">Câmera dupla</span>
       <span class="ficha f2">Sensores em todas as direções</span>
       <span class="ficha f3">GNSS em campo</span>
@@ -74,14 +83,9 @@
 
 <!-- Faixa -->
 <div class="faixa" aria-label="Diferenciais da Terra Marcada">
-  <div class="faixa-trilho">
-    <ul class="faixa-lista">
-      <li>12 anos de experiência</li><li>Equipe especializada</li><li>Garantia de sua casa ou lote regularizados</li><li>Atendemos Ijuí e região</li>
-    </ul>
-    <ul class="faixa-lista" aria-hidden="true">
-      <li>12 anos de experiência</li><li>Equipe especializada</li><li>Garantia de sua casa ou lote regularizados</li><li>Atendemos Ijuí e região</li>
-    </ul>
-  </div>
+  <ul class="faixa-lista">
+    <li>12 anos de experiência</li><li>Equipe especializada</li><li>Garantia de sua casa ou lote regularizados</li><li>Atendemos Ijuí e região</li>
+  </ul>
 </div>
 
 <!-- 2 · O PROBLEMA -->
@@ -109,7 +113,7 @@
 </section>
 
 <!-- 3 · O VOO -->
-<section data-fx-fixa data-fx-altura="3" data-fx-etapas="3" class="voo escuro" id="voo">
+<section data-fx-fixa data-fx-altura="3" data-fx-etapas="3" class="voo escuro" id="voo" data-curva="areia-2">
   <div class="fx-palco">
     <div class="voo-bg" aria-hidden="true">
       <div class="voo-pan" data-fx-y="70,-70"><canvas data-terra="aerial" class="terra-cv"></canvas></div>
@@ -137,12 +141,12 @@
       <div class="palco-dir">
         <div class="drone-cena">
           <div class="radar"><i></i><i></i></div>
-          <img src="assets/drone-dji-air-3s.png" alt="Drone DJI Air 3S sobrevoando a área" width="720" height="720" class="drone" data-fx-y="140,-20" data-fx-giro="-5,4" data-fx-escala="0.8,1.08">
+          <img src="assets/drone-dji-air-3s.webp" alt="Drone DJI Air 3S sobrevoando a área" width="720" height="720" class="drone" data-fx-y="140,-20" data-fx-giro="-5,4" data-fx-escala="0.8,1.08">
           <span class="chama c1">Câmera dupla</span>
           <span class="chama c2">Sensores omnidirecionais</span>
         </div>
         <figure class="foto-campo">
-          <img src="assets/campo-gnss.png" alt="Técnico da Terra Marcada operando equipamento GNSS sobre tripé, em campo" width="335" height="597" loading="lazy" decoding="async">
+          <img src="assets/campo-gnss.jpg" alt="Técnico da Terra Marcada operando equipamento GNSS sobre tripé, em campo" width="335" height="597" loading="lazy" decoding="async">
           <figcaption>Equipamento GNSS em campo</figcaption>
         </figure>
       </div>
@@ -192,7 +196,7 @@
 </section>
 
 <!-- 5 · O RIGOR -->
-<section class="cena rigor escuro" id="rigor">
+<section class="cena rigor escuro" id="rigor" data-curva="areia">
   <div class="grade grade-rigor">
     <div class="col-txt">
       <h2 data-fx="subir">Conferido antes de chegar até você.</h2>
@@ -219,7 +223,7 @@
 </section>
 
 <!-- 6 · REURB E SERVIÇOS -->
-<section data-fx-fixa data-fx-altura="2.6" class="servicos claro" id="servicos">
+<section data-fx-fixa data-fx-altura="2.6" class="servicos claro" id="servicos" data-curva="floresta">
   <div class="fx-palco">
     <div data-fx="trilho" class="trilho">
       <article class="painel painel-reurb">
@@ -232,25 +236,25 @@
         </ul>
       </article>
       <article class="painel cartao">
-        <span class="ico"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-6h6v6"/></svg></span>
+        <svg class="cartao-arte" viewBox="0 0 320 88" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="ct"><ellipse cx="190" cy="52" rx="150" ry="62"/><ellipse cx="190" cy="52" rx="112" ry="46"/><ellipse cx="190" cy="52" rx="74" ry="30"/><ellipse cx="190" cy="52" rx="36" ry="14"/></g><polygon class="lt" points="96,66 140,22 214,28 250,58 176,78"/><g class="vt"><circle cx="96" cy="66" r="4"/><circle cx="140" cy="22" r="4"/><circle cx="214" cy="28" r="4"/><circle cx="250" cy="58" r="4"/><circle cx="176" cy="78" r="4"/></g></svg>
         <h3>Propriedades rurais</h3>
         <p>Georreferenciamento, limites e áreas com coordenadas precisas, base para documentação.</p>
         <a class="mais" data-wa="Olá, Terra Marcada! Tenho uma propriedade rural e quero georreferenciar." href="https://wa.me/5555999345858">Quero medir minha propriedade</a>
       </article>
       <article class="painel cartao">
-        <span class="ico"><svg viewBox="0 0 24 24"><path d="M2 18c3-1 4-5 7-5s4 3 7 3 4-4 6-5M2 13c3-1 4-5 7-5s4 3 7 3 4-4 6-5M2 8c3-1 4-4 7-4"/></svg></span>
+        <svg class="cartao-arte" viewBox="0 0 320 88" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path class="rd2" d="M0 62 C80 40 160 70 320 36"/><g class="lt2"><rect x="30" y="14" width="46" height="30"/><rect x="82" y="10" width="46" height="30"/><rect x="134" y="14" width="46" height="26"/><rect x="190" y="6" width="46" height="26"/><rect x="242" y="2" width="56" height="26"/><rect x="40" y="68" width="52" height="18"/><rect x="100" y="70" width="52" height="18"/><rect x="210" y="52" width="52" height="30"/></g><g class="ct"><path d="M0 28 C60 8 120 24 180 12 S280 0 320 8"/></g></svg>
         <h3>Loteamentos e projetos</h3>
         <p>Curvas de nível, planta planialtimétrica e cálculo de volumes para planejar com segurança.</p>
         <a class="mais" data-wa="Olá, Terra Marcada! Tenho uma obra ou loteamento e preciso de levantamento do terreno." href="https://wa.me/5555999345858">Quero planejar minha obra</a>
       </article>
       <article class="painel cartao">
-        <span class="ico"><svg viewBox="0 0 24 24"><path d="M4 21V8l8-5 8 5v13M9 21v-5h6v5M9 11h.01M15 11h.01"/></svg></span>
+        <svg class="cartao-arte" viewBox="0 0 320 88" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="lt2"><rect x="24" y="30" width="38" height="46"/><rect x="70" y="14" width="30" height="62"/><rect x="108" y="38" width="44" height="38"/><rect x="160" y="22" width="36" height="54"/><rect x="204" y="44" width="42" height="32"/><rect x="254" y="26" width="40" height="50"/></g><path class="rd2" d="M0 82 H320"/><g class="pin"><circle cx="178" cy="12" r="7"/><circle cx="178" cy="12" r="2.5"/></g></svg>
         <h3>Poder público</h3>
         <p>Mapas e ortomosaicos em alta resolução para apoiar o planejamento e a regularização urbana.</p>
         <a class="mais" data-wa="Olá, Terra Marcada! Represento um órgão público e gostaria de conversar sobre mapeamento." href="https://wa.me/5555999345858">Quero conversar sobre meu município</a>
       </article>
       <article class="painel cartao cartao-foto">
-        <img src="assets/atendimento.png" alt="Atendimento na Terra Marcada, com mapas sobre a mesa" width="194" height="259" loading="lazy" decoding="async">
+        <img src="assets/atendimento.jpg" alt="Atendimento na Terra Marcada, com mapas sobre a mesa" width="194" height="259" loading="lazy" decoding="async">
         <div>
           <h3>Seu imóvel, com escritura.</h3>
           <p>Atendimento próximo, com os mapas sobre a mesa e cada etapa explicada.</p>
@@ -262,7 +266,7 @@
 </section>
 
 <!-- 7 · CONTATO -->
-<section class="cena final escuro" id="contato">
+<section class="cena final escuro" id="contato" data-curva="areia">
   <div class="final-bg" aria-hidden="true"><canvas data-terra="lines" class="terra-cv"></canvas></div>
   <div class="final-in">
     <h2 data-fx="palavras" data-fx-duracao="800">Pode ficar tranquilo.</h2>
@@ -284,9 +288,11 @@
 
 </main>
 
+<script src="config.js" defer></script>
 <script src="terrain.js" defer></script>
 <script src="sites-incriveis.js" defer></script>
 <script src="site.js" defer></script>
 <script src="topo.js" defer></script>
+<script src="nav.js" defer></script>
 </body>
 </html>

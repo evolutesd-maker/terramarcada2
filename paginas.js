@@ -4,7 +4,7 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const WA = '5555999345858';
+  const WA = (window.TM && window.TM.whatsapp) || '5555999345858';
   const pagina = document.body.dataset.pagina;
 
   /* comum: WhatsApp com mensagem própria, barra de navegação, ano */
@@ -18,7 +18,7 @@
   addEventListener('scroll', () => {
     const y = scrollY;
     nav.classList.toggle('sombra', y > 20);
-    nav.classList.toggle('some', y > yAnt && y > 400);
+    nav.classList.toggle('some', y > yAnt && y > 400 && !document.querySelector('.nav-links.aberto'));
     yAnt = y;
   }, { passive: true });
 

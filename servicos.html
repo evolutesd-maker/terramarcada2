@@ -6,6 +6,9 @@
   <title>Serviços | Terra Marcada</title>
   <meta name="description" content="Georreferenciamento, regularização de imóveis, REURB, curvas de nível, ortomosaico, volumes e loteamentos. Conheça os serviços da Terra Marcada em Ijuí.">
   <meta name="theme-color" content="#061C15">
+  <meta property="og:image" content="assets/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
   <link rel="icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,19 +16,22 @@
   <link rel="stylesheet" href="sites-incriveis.css">
   <link rel="stylesheet" href="site.css">
   <link rel="stylesheet" href="pages.css">
+<noscript><style>[data-fx]{opacity:1!important;transform:none!important}.terra-cv{display:none}.fx-etapa{opacity:1!important;visibility:visible!important}</style></noscript>
 </head>
 <body class="pg" data-pagina="servicos">
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 <header class="nav" id="nav">
   <a href="index.html" class="nav-logo" aria-label="Terra Marcada, início"><img src="assets/logo.png" alt="Terra Marcada" width="447" height="447"></a>
-  <nav class="nav-links" aria-label="Principal">
+  <nav class="nav-links" id="menu" aria-label="Principal">
     <a href="index.html">Início</a>
     <a href="servicos.html" aria-current="page">Serviços</a>
     <a href="documentacao.html">Documentação</a>
     <a href="sobre.html">Quem somos</a>
   </nav>
   <a class="btn btn-sm" data-wa="Olá, Terra Marcada! Gostaria de um orçamento." href="https://wa.me/5555999345858">Pedir orçamento</a>
+  <button type="button" class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
 </header>
-<main>
+<main id="conteudo" tabindex="-1">
 <section class="pg-hero escuro">
   <canvas data-terra="lines" class="terra-cv linhas" aria-hidden="true"></canvas>
   <div class="pg-hero-in">
@@ -46,7 +52,7 @@
     </div>
     <div class="svc-grade">
 <article class="svc" data-grupo="rural">
-  <h3>Georreferenciamento</h3>
+  <h2>Georreferenciamento</h2>
   <p>Limites do imóvel com coordenadas precisas, base para a documentação rural.</p>
   <div class="tags"><i>Rural</i><i>Drone e GNSS</i></div>
   <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
@@ -57,7 +63,7 @@
   </dl><a class="btn" data-wa="Olá, Terra Marcada! Tenho uma propriedade rural e quero georreferenciar." href="https://wa.me/5555999345858">Quero este serviço</a></div></div>
 </article>
 <article class="svc" data-grupo="urbano">
-  <h3>Regularização de imóvel</h3>
+  <h2>Regularização de imóvel</h2>
   <p>Casa ou lote sem escritura? Cuidamos do levantamento e acompanhamos o processo.</p>
   <div class="tags"><i>Urbano</i><i>Escritura</i></div>
   <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
@@ -68,7 +74,7 @@
   </dl><a class="btn" data-wa="Olá, Terra Marcada! Quero regularizar meu imóvel." href="https://wa.me/5555999345858">Quero este serviço</a></div></div>
 </article>
 <article class="svc" data-grupo="urbano publico">
-  <h3>REURB</h3>
+  <h2>REURB</h2>
   <p>Regularização Fundiária Urbana para legalizar assentamentos e dar escritura a quem mora.</p>
   <div class="tags"><i>Urbano</i><i>Poder público</i></div>
   <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
@@ -79,7 +85,7 @@
   </dl><a class="btn" data-wa="Olá, Terra Marcada! Quero informações sobre REURB." href="https://wa.me/5555999345858">Quero este serviço</a></div></div>
 </article>
 <article class="svc" data-grupo="obras">
-  <h3>Levantamento planialtimétrico</h3>
+  <h2>Levantamento planialtimétrico</h2>
   <p>Posição e altura do terreno em uma planta, para projetar com segurança.</p>
   <div class="tags"><i>Obras</i><i>Projetos</i></div>
   <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
@@ -90,7 +96,7 @@
   </dl><a class="btn" data-wa="Olá, Terra Marcada! Preciso de levantamento planialtimétrico." href="https://wa.me/5555999345858">Quero este serviço</a></div></div>
 </article>
 <article class="svc" data-grupo="rural obras">
-  <h3>Curvas de nível e relevo</h3>
+  <h2>Curvas de nível e relevo</h2>
   <p>Veja cada subida e descida: onde a água corre e onde dá para construir.</p>
   <div class="tags"><i>Rural</i><i>Obras</i></div>
   <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
@@ -101,7 +107,7 @@
   </dl><a class="btn" data-wa="Olá, Terra Marcada! Quero um mapa de curvas de nível." href="https://wa.me/5555999345858">Quero este serviço</a></div></div>
 </article>
 <article class="svc" data-grupo="rural obras publico">
-  <h3>Ortomosaico com drone</h3>
+  <h2>Ortomosaico com drone</h2>
   <p>Imagem aérea contínua, em alta resolução e escala real.</p>
   <div class="tags"><i>Todos</i><i>Drone</i></div>
   <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
@@ -112,7 +118,7 @@
   </dl><a class="btn" data-wa="Olá, Terra Marcada! Quero um ortomosaico da minha área." href="https://wa.me/5555999345858">Quero este serviço</a></div></div>
 </article>
 <article class="svc" data-grupo="obras">
-  <h3>Cálculo de volumes</h3>
+  <h2>Cálculo de volumes</h2>
   <p>Aterros, cortes e estoques medidos com rapidez e sem expor equipes a risco.</p>
   <div class="tags"><i>Obras</i></div>
   <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
@@ -123,7 +129,7 @@
   </dl><a class="btn" data-wa="Olá, Terra Marcada! Preciso calcular volumes de aterro, corte ou estoque." href="https://wa.me/5555999345858">Quero este serviço</a></div></div>
 </article>
 <article class="svc" data-grupo="obras urbano">
-  <h3>Loteamentos e projetos</h3>
+  <h2>Loteamentos e projetos</h2>
   <p>Base cartográfica para loteamentos, obras e estudos de viabilidade.</p>
   <div class="tags"><i>Obras</i><i>Urbano</i></div>
   <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
@@ -134,7 +140,7 @@
   </dl><a class="btn" data-wa="Olá, Terra Marcada! Tenho um loteamento ou projeto e preciso de base cartográfica." href="https://wa.me/5555999345858">Quero este serviço</a></div></div>
 </article>
 <article class="svc" data-grupo="publico">
-  <h3>Mapas para o poder público</h3>
+  <h2>Mapas para o poder público</h2>
   <p>Mapas e imagens em alta resolução para planejar e regularizar a cidade.</p>
   <div class="tags"><i>Poder público</i><i>Urbano</i></div>
   <button type="button" class="mais-btn" aria-expanded="false">Ver detalhes</button>
@@ -183,9 +189,11 @@
   </div>
   <div class="foot-fim"><span>Terra Marcada® mapeamento territorial</span><span>© <span id="ano">2026</span></span></div>
 </footer>
+<script src="config.js" defer></script>
 <script src="terrain.js" defer></script>
 <script src="sites-incriveis.js" defer></script>
 <script src="paginas.js" defer></script>
 <script src="topo.js" defer></script>
+<script src="nav.js" defer></script>
 </body>
 </html>

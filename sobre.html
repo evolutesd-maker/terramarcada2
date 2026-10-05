@@ -6,6 +6,9 @@
   <title>Quem somos | Terra Marcada</title>
   <meta name="description" content="Conheça a Terra Marcada, mapeamento territorial e regularização de imóveis em Ijuí: nossa equipe, como trabalhamos e a Dra. Sandra Bado.">
   <meta name="theme-color" content="#061C15">
+  <meta property="og:image" content="assets/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
   <link rel="icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,19 +16,22 @@
   <link rel="stylesheet" href="sites-incriveis.css">
   <link rel="stylesheet" href="site.css">
   <link rel="stylesheet" href="pages.css">
+<noscript><style>[data-fx]{opacity:1!important;transform:none!important}.terra-cv{display:none}.fx-etapa{opacity:1!important;visibility:visible!important}</style></noscript>
 </head>
 <body class="pg" data-pagina="sobre">
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 <header class="nav" id="nav">
   <a href="index.html" class="nav-logo" aria-label="Terra Marcada, início"><img src="assets/logo.png" alt="Terra Marcada" width="447" height="447"></a>
-  <nav class="nav-links" aria-label="Principal">
+  <nav class="nav-links" id="menu" aria-label="Principal">
     <a href="index.html">Início</a>
     <a href="servicos.html">Serviços</a>
     <a href="documentacao.html">Documentação</a>
     <a href="sobre.html" aria-current="page">Quem somos</a>
   </nav>
   <a class="btn btn-sm" data-wa="Olá, Terra Marcada! Gostaria de um orçamento." href="https://wa.me/5555999345858">Pedir orçamento</a>
+  <button type="button" class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
 </header>
-<main>
+<main id="conteudo" tabindex="-1">
 <section class="pg-hero escuro">
   <canvas data-terra="lines" class="terra-cv linhas" aria-hidden="true"></canvas>
   <div class="pg-hero-in">
@@ -88,8 +94,8 @@
     <h2 data-fx="subir">No atendimento e em campo.</h2>
     <p class="lead" data-fx="subir" data-fx-atraso="100">Trabalho feito com os mapas sobre a mesa e os equipamentos no terreno.</p>
     <div class="fotos-par">
-      <figure class="foto" data-fx="esquerda"><img src="assets/atendimento.png" alt="Atendimento na Terra Marcada, com mapas sobre a mesa" width="194" height="259" loading="lazy" decoding="async"><figcaption>Atendimento com mapas à mesa</figcaption></figure>
-      <figure class="foto" data-fx="direita"><img src="assets/campo-gnss.png" alt="Técnico da Terra Marcada operando equipamento GNSS sobre tripé, em campo" width="335" height="597" loading="lazy" decoding="async"><figcaption>Equipamento GNSS em campo</figcaption></figure>
+      <figure class="foto" data-fx="esquerda"><img src="assets/atendimento.jpg" alt="Atendimento na Terra Marcada, com mapas sobre a mesa" width="194" height="259" loading="lazy" decoding="async"><figcaption>Atendimento com mapas à mesa</figcaption></figure>
+      <figure class="foto" data-fx="direita"><img src="assets/campo-gnss.jpg" alt="Técnico da Terra Marcada operando equipamento GNSS sobre tripé, em campo" width="335" height="597" loading="lazy" decoding="async"><figcaption>Equipamento GNSS em campo</figcaption></figure>
     </div>
   </div>
 </section>
@@ -128,9 +134,11 @@
   </div>
   <div class="foot-fim"><span>Terra Marcada® mapeamento territorial</span><span>© <span id="ano">2026</span></span></div>
 </footer>
+<script src="config.js" defer></script>
 <script src="terrain.js" defer></script>
 <script src="sites-incriveis.js" defer></script>
 <script src="paginas.js" defer></script>
 <script src="topo.js" defer></script>
+<script src="nav.js" defer></script>
 </body>
 </html>

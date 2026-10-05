@@ -6,6 +6,9 @@
   <title>Política de privacidade | Terra Marcada</title>
   <meta name="description" content="Política de privacidade da Terra Marcada: quais dados coletamos, para que usamos, com quem compartilhamos e como exercer seus direitos pela LGPD.">
   <meta name="theme-color" content="#061C15">
+  <meta property="og:image" content="assets/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
   <link rel="icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,19 +16,22 @@
   <link rel="stylesheet" href="sites-incriveis.css">
   <link rel="stylesheet" href="site.css">
   <link rel="stylesheet" href="pages.css">
+<noscript><style>[data-fx]{opacity:1!important;transform:none!important}.terra-cv{display:none}.fx-etapa{opacity:1!important;visibility:visible!important}</style></noscript>
 </head>
 <body class="pg" data-pagina="privacidade">
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 <header class="nav" id="nav">
   <a href="index.html" class="nav-logo" aria-label="Terra Marcada, início"><img src="assets/logo.png" alt="Terra Marcada" width="447" height="447"></a>
-  <nav class="nav-links" aria-label="Principal">
+  <nav class="nav-links" id="menu" aria-label="Principal">
     <a href="index.html">Início</a>
     <a href="servicos.html">Serviços</a>
     <a href="documentacao.html">Documentação</a>
     <a href="sobre.html">Quem somos</a>
   </nav>
   <a class="btn btn-sm" data-wa="Olá, Terra Marcada! Gostaria de um orçamento." href="https://wa.me/5555999345858">Pedir orçamento</a>
+  <button type="button" class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
 </header>
-<main>
+<main id="conteudo" tabindex="-1">
 <div class="progresso-leitura" id="progLeitura" aria-hidden="true"></div>
 <section class="pg-hero escuro">
   <canvas data-terra="lines" class="terra-cv linhas" aria-hidden="true"></canvas>
@@ -147,9 +153,11 @@
   </div>
   <div class="foot-fim"><span>Terra Marcada® mapeamento territorial</span><span>© <span id="ano">2026</span></span></div>
 </footer>
+<script src="config.js" defer></script>
 <script src="terrain.js" defer></script>
 <script src="sites-incriveis.js" defer></script>
 <script src="paginas.js" defer></script>
 <script src="topo.js" defer></script>
+<script src="nav.js" defer></script>
 </body>
 </html>
