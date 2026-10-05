@@ -6,7 +6,7 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const WA = '5555999345858';
 
-  /* ---------- Links de WhatsApp: cada chamada leva sua própria mensagem ---------- */
+  /* Cada chamada leva a sua própria mensagem para o WhatsApp */
   $$('[data-wa]').forEach(a => {
     a.href = `https://wa.me/${WA}?text=${encodeURIComponent(a.dataset.wa)}`;
     a.target = '_blank';
@@ -14,67 +14,46 @@
   });
   $('#ano').textContent = new Date().getFullYear();
 
-  /* ---------- Geração de relevo (curvas de nível) ---------- */
-  const seeded = seed => () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-  const NS = 'http://www.w3.org/2000/svg';
-  function blob(cx, cy, r, rnd, k) {
-    const a1 = .07 + rnd() * .05, a2 = .05 + rnd() * .04, a3 = .03 * rnd();
-    const p1 = rnd() * 6.28, p2 = rnd() * 6.28, p3 = rnd() * 6.28;
-    let d = '';
-    for (let i = 0; i <= 72; i++) {
-      const t = i / 72 * Math.PI * 2;
-      const rr = r * (1 + a1 * Math.sin(2 * t + p1 + k * .08) + a2 * Math.sin(3 * t + p2) + a3 * Math.sin(5 * t + p3));
-      d += (i ? 'L' : 'M') + (cx + Math.cos(t) * rr).toFixed(1) + ' ' + (cy + Math.sin(t) * rr * .82).toFixed(1);
-    }
-    return d + 'Z';
-  }
-  const rings = (seed, cx, cy, n, step, animated) => {
-    const rnd = seeded(seed);
-    let s = '';
-    for (let i = 1; i <= n; i++) s += `<path d="${blob(cx, cy, i * step, rnd, i)}"${animated ? ' pathLength="1"' : ''}/>`;
+  /* ---------- Carta cadastral do terreno de exemplo (viewBox 1200 x 800) ---------- */
+  const M_POR_PX = 0.6;                       // escala do exemplo: 1 px = 0,6 m
+  const LOTE = [[430, 250], [700, 215], [820, 330], [780, 520], [560, 570], [400, 430]];
+  const VIZ = [
+    [[210, 300], [430, 250], [400, 430], [230, 470]],
+    [[700, 215], [960, 180], [1010, 360], [820, 330]],
+    [[820, 330], [1010, 360], [980, 540], [780, 520]],
+    [[230, 470], [400, 430], [560, 570], [500, 690], [300, 650]],
+    [[560, 570], [780, 520], [980, 540], [940, 700], [700, 720], [500, 690]]
+  ];
+  const CTL = [[330, 190], [900, 440], [620, 655]];
+  const d = pts => pts.map((p, i) => (i ? 'L' : 'M') + p.join(' ')).join(' ') + ' Z';
+  const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
+  const cx = LOTE.reduce((s, p) => s + p[0], 0) / LOTE.length;
+  const cy = LOTE.reduce((s, p) => s + p[1], 0) / LOTE.length;
+  const perimetro = LOTE.reduce((s, p, i) => s + dist(p, LOTE[(i + 1) % LOTE.length]), 0) * M_POR_PX;
+  const area = Math.abs(LOTE.reduce((s, p, i) => { const q = LOTE[(i + 1) % LOTE.length]; return s + p[0] * q[1] - q[0] * p[1]; }, 0)) / 2 * M_POR_PX * M_POR_PX / 10000;
+  const fora = (p, k) => { const dx = p[0] - cx, dy = p[1] - cy, n = Math.hypot(dx, dy); return [p[0] + dx / n * k, p[1] + dy / n * k]; };
+  const tri = c => `M${c[0]} ${c[1] - 13} L${c[0] + 12} ${c[1] + 9} L${c[0] - 12} ${c[1] + 9} Z`;
+
+  function cadastro() {
+    let s = VIZ.map(v => `<path class="nb" pathLength="1" d="${d(v)}"/>`).join('');
+    s += '<path class="rd" pathLength="1" d="M-20 735 C300 700 700 765 1220 705"/>';
+    s += `<polygon class="lotfill" points="${LOTE.map(p => p.join(',')).join(' ')}"/>`;
+    s += `<path class="lot" pathLength="1" d="${d(LOTE)}"/>`;
+    s += LOTE.map((p, i) => {
+      const a = LOTE[(i + 1) % LOTE.length], m = [(p[0] + a[0]) / 2, (p[1] + a[1]) / 2], t = fora(m, 34);
+      return `<rect class="dimbg" x="${(t[0] - 40).toFixed(0)}" y="${(t[1] - 20).toFixed(0)}" width="80" height="30" rx="15"/>
+        <text class="dim" x="${t[0].toFixed(0)}" y="${(t[1] + 1).toFixed(0)}" text-anchor="middle">${Math.round(dist(p, a) * M_POR_PX)} m</text>`;
+    }).join('');
+    s += CTL.map(c => `<path class="ctl" d="${tri(c)}"/>`).join('');
+    s += LOTE.map(p => `<circle class="vx" cx="${p[0]}" cy="${p[1]}" r="10"/>`).join('');
+    s += LOTE.map((p, i) => { const t = fora(p, 30); return `<text class="vl" x="${t[0].toFixed(0)}" y="${(t[1] + 7).toFixed(0)}" text-anchor="middle">P${i + 1}</text>`; }).join('');
     return s;
-  };
+  }
+  $('#cad').innerHTML = cadastro();
+  $('#cadFixo').innerHTML = cadastro();
+  $('#cadFixo').classList.add('cad-fixo');
 
-  /* hero e cenas decorativas */
-  $('#heroMapa').innerHTML = `
-    <g class="c">${rings(42, 330, 290, 24, 30)}</g>
-    <path d="M70 460 L190 300 L360 260 L470 340" fill="none" stroke="#C49A2A" stroke-width="3.5" stroke-dasharray="9 8"/>
-    <circle cx="190" cy="300" r="5" fill="#0F3A2C"/><circle cx="360" cy="260" r="5" fill="#0F3A2C"/>`;
-  $('#dubiaContornos').innerHTML = rings(7, 320, 260, 14, 34);
-  $('#discoContornos').innerHTML = rings(21, 200, 200, 12, 20);
-
-  /* ---------- Mapa do terreno (geometria única, usada no pico e no rigor) ---------- */
-  const P = [[170, 130], [400, 100], [470, 230], [430, 380], [260, 400], [150, 290]];
-  const rotP = [[-30, -10], [0, -14], [16, 6], [14, 22], [-6, 24], [-36, 4]];
-  const poly = P.map((p, i) => (i ? 'L' : 'M') + p.join(' ')).join(' ') + ' Z';
-  const tri = (x, y) => `M${x} ${y - 9} L${x + 9} ${y + 7} L${x - 9} ${y + 7} Z`;
-  const PC = [[100, 200], [520, 330], [300, 455]];
-  const norte = `<g><path class="norte" d="M548 88 L548 38 M539 52 L548 38 L557 52"/><text class="norte-t" x="540" y="112">N</text></g>`;
-  const mapaBase = animated => `
-    <g class="c">${rings(11, 320, 255, 15, 30, animated)}</g>
-    <polygon class="area" points="${P.map(p => p.join(',')).join(' ')}" ${animated ? '' : 'style="fill:#C49A2A;opacity:.2"'}/>
-    <path class="lim" d="${poly}" ${animated ? 'pathLength="1"' : 'style="fill:none;stroke:#C49A2A;stroke-width:4;stroke-linejoin:round"'}/>
-    ${P.map((p, i) => `<circle class="v" cx="${p[0]}" cy="${p[1]}" r="6.5" ${animated ? '' : 'style="fill:#0F3A2C"'}/>
-      <text class="pl" x="${p[0] + rotP[i][0]}" y="${p[1] + rotP[i][1]}" ${animated ? '' : 'style="opacity:1"'}>P${i + 1}</text>`).join('')}
-    ${PC.map(c => `<path class="pc" d="${tri(c[0], c[1])}" ${animated ? '' : 'style="fill:none;stroke:#0F3A2C;stroke-width:2"'}/>`).join('')}
-    ${norte}`;
-  $('#picoMapa').innerHTML = mapaBase(true);
-  $('#reguaMapa').innerHTML = mapaBase(false);
-
-  /* "imagem do voo": mosaico de talhões, mata, telhados e estrada (sem foto real) */
-  (function ortofoto() {
-    const rnd = seeded(5);
-    const verdes = ['#6E8B4A', '#7C9A55', '#5C7A3E', '#8DA562', '#A0A66A', '#B4A773', '#5A7448'];
-    let s = '<rect width="600" height="500" fill="#6E8B4A"/>';
-    for (let y = 0; y < 500; y += 62)
-      for (let x = 0; x < 600; x += 75)
-        s += `<polygon points="${x + rnd() * 10},${y + rnd() * 10} ${x + 75 - rnd() * 10},${y + rnd() * 14} ${x + 72 - rnd() * 10},${y + 62 - rnd() * 10} ${x + rnd() * 12},${y + 60 - rnd() * 12}" fill="${verdes[Math.floor(rnd() * verdes.length)]}" opacity=".95"/>`;
-    s += '<path d="M-10 420 C150 380 260 330 400 360 S600 300 620 250" stroke="#D8CBA6" stroke-width="14" fill="none"/>';
-    for (let i = 0; i < 38; i++)
-      s += `<circle cx="${rnd() * 600}" cy="${rnd() * 500}" r="${6 + rnd() * 9}" fill="#3E5B2F" opacity=".75"/>`;
-    [[240, 210], [330, 250], [210, 300]].forEach(r => s += `<rect x="${r[0]}" y="${r[1]}" width="22" height="14" fill="#B5603F"/><rect x="${r[0] + 3}" y="${r[1] + 3}" width="9" height="8" fill="#8E4A30"/>`);
-    $('#reguaCrua').innerHTML = s;
-  })();
+  const fmt = (v, c) => v.toLocaleString('pt-BR', { minimumFractionDigits: c, maximumFractionDigits: c });
 
   /* ---------- Progresso de cena fixa ---------- */
   const prog = sec => {
@@ -82,66 +61,77 @@
     return clamp(-r.top / (sec.offsetHeight - innerHeight));
   };
 
-  /* ---------- PICO: o mapa se desenha com a rolagem ---------- */
-  const secMapa = $('#mapa');
-  const conts = $$('#picoMapa .c path');
-  const lim = $('#picoMapa .lim');
-  const vs = $$('#picoMapa .v');
-  const pls = $$('#picoMapa .pl');
-  const pcs = $$('#picoMapa .pc');
-  const area = $('#picoMapa .area');
-  let lastP = -1;
+  /* ---------- PICO: a carta se forma conforme a rolagem ---------- */
+  const secMapa = $('#mapa'), prancha = $('#prancha'), pMapa = $('#pranchaMapa'), scan = $('#scan');
+  const g = {
+    nb: $$('#cad .nb'), rd: $('#cad .rd'), lot: $('#cad .lot'), fill: $('#cad .lotfill'),
+    vx: $$('#cad .vx'), vl: $$('#cad .vl'), dim: $$('#cad .dim'), bg: $$('#cad .dimbg'), ctl: $$('#cad .ctl')
+  };
+  const eArea = $('#eArea'), ePer = $('#ePer');
+  let largP = 0, lastP = -1;
+  const medirPrancha = () => { largP = prancha.clientWidth; prancha.style.setProperty('--prancha-w', largP + 'px'); };
+  medirPrancha(); addEventListener('resize', medirPrancha);
+
   function desenhar() {
     const r = secMapa.getBoundingClientRect();
     if (r.bottom < -50 || r.top > innerHeight + 50) return;
     const p = prog(secMapa);
     if (Math.abs(p - lastP) < .001) return;
     lastP = p;
-    conts.forEach((el, i) => {
-      const a = i * .03;
-      el.style.strokeDashoffset = (1 - clamp((p - a) / .17)).toFixed(3);
-    });
-    pcs.forEach((el, i) => { el.style.opacity = clamp((p - (.3 + i * .05)) / .06).toFixed(2); });
-    lim.style.strokeDashoffset = (1 - clamp((p - .42) / .26)).toFixed(3);
-    vs.forEach((el, i) => {
-      const t = clamp((p - (.46 + i * .04)) / .04);
+    const s = clamp(p / .36);
+    pMapa.style.clipPath = `inset(0 ${((1 - s) * 100).toFixed(2)}% 0 0)`;
+    scan.style.opacity = p > .004 && p < .375 ? 1 : 0;
+    scan.style.transform = `translateX(${(s * largP).toFixed(1)}px)`;
+    g.nb.forEach((el, i) => { el.style.strokeDashoffset = (1 - clamp((p - (.3 + i * .03)) / .14)).toFixed(3); });
+    g.rd.style.strokeDashoffset = (1 - clamp((p - .3) / .2)).toFixed(3);
+    g.ctl.forEach((el, i) => { el.style.opacity = clamp((p - (.42 + i * .04)) / .06).toFixed(2); });
+    g.lot.style.strokeDashoffset = (1 - clamp((p - .5) / .22)).toFixed(3);
+    g.vx.forEach((el, i) => {
+      const t = clamp((p - (.52 + i * .035)) / .04);
       el.style.opacity = t.toFixed(2);
       el.style.transform = `scale(${t.toFixed(2)})`;
     });
-    pls.forEach(el => { el.style.opacity = clamp((p - .7) / .1).toFixed(2); });
-    area.style.opacity = (clamp((p - .78) / .12) * .2).toFixed(3);
+    g.vl.forEach(el => { el.style.opacity = clamp((p - .7) / .08).toFixed(2); });
+    const td = clamp((p - .74) / .08).toFixed(2);
+    g.dim.forEach(el => { el.style.opacity = td; });
+    g.bg.forEach(el => { el.style.opacity = td; });
+    g.fill.style.opacity = clamp((p - .78) / .1).toFixed(2);
+    const n = clamp((p - .74) / .16);
+    eArea.textContent = fmt(area * n, 1);
+    ePer.textContent = fmt(Math.round(perimetro * n), 0);
   }
+  if (reduce) { eArea.textContent = fmt(area, 1); ePer.textContent = fmt(Math.round(perimetro), 0); }
 
   /* ---------- HUD: a rolagem é o voo ---------- */
-  const hud = $('#hud'), pill = $('#waPill');
+  const hud = $('#hud'), pill = $('#waPill'), nav = $('#nav');
   const hAlt = $('#hudAlt'), hLat = $('#hudLat'), hLon = $('#hudLon'), hBar = $('#hudBar'), hEsc = $('#hudEsc');
   const trechos = [['#voo', 0, 100], ['#mapa', 100, 100], ['#rigor', 100, 60], ['#servicos', 60, 20], ['#contato', 20, 0]]
     .map(([id, a, b]) => ({ el: $(id), a, b }));
   const hero = $('#terra');
-  let ult = '';
+  let ult = '', yAnt = 0;
   function atualizarHud() {
-    const vh = innerHeight;
+    const vh = innerHeight, y = scrollY;
     pill.classList.toggle('on', hero.getBoundingClientRect().bottom < vh * .4);
-    const rv = trechos[0].el.getBoundingClientRect();
-    hud.classList.toggle('on', rv.top < vh * .75);
+    nav.classList.toggle('sombra', y > 20);
+    nav.classList.toggle('some', y > yAnt && y > 500);
+    yAnt = y;
+    hud.classList.toggle('on', trechos[0].el.getBoundingClientRect().top < vh * .75);
     let alt = 0;
     for (const t of trechos) {
       const r = t.el.getBoundingClientRect();
       if (r.top - vh * .5 > 0) break;
-      const k = clamp((vh * .5 - r.top) / r.height);
-      alt = t.a + (t.b - t.a) * k;
+      alt = t.a + (t.b - t.a) * clamp((vh * .5 - r.top) / r.height);
     }
     alt = Math.round(alt);
-    const f = scrollY / Math.max(1, document.documentElement.scrollHeight - vh);
+    const f = y / Math.max(1, document.documentElement.scrollHeight - vh);
     const lat = (28.388 + f * .0042).toFixed(4), lon = (53.914 - f * .0036).toFixed(4);
-    const dist = Math.max(5, Math.round(alt * 1.2 / 5) * 5);
     const chave = alt + lat + lon;
     if (chave === ult) return;
     ult = chave;
     hAlt.textContent = alt + ' m';
     hLat.textContent = lat + '° S';
     hLon.textContent = lon + '° O';
-    hEsc.textContent = dist + ' m';
+    hEsc.textContent = Math.max(5, Math.round(alt * 1.2 / 5) * 5) + ' m';
     hBar.style.width = (28 + Math.min(alt, 100) * .5) + 'px';
   }
 
@@ -165,7 +155,7 @@
       const t0 = performance.now();
       (function passo(t) {
         if (tocou) return;
-        const p = clamp((t - t0 - 600) / 1500);
+        const p = clamp((t - t0 - 600) / 1600);
         const v = 96 - 46 * (1 - Math.pow(1 - p, 3));
         entrada.value = v;
         posicionar(v);
@@ -180,7 +170,9 @@
     const tick = () => { ag = false; desenhar(); atualizarHud(); };
     addEventListener('scroll', () => { if (!ag) { ag = true; requestAnimationFrame(tick); } }, { passive: true });
     addEventListener('resize', tick);
-    addEventListener('load', medir);
+    addEventListener('load', () => { medir(); medirPrancha(); });
     tick();
+  } else {
+    pMapa.style.clipPath = 'none';
   }
 })();
