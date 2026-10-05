@@ -1,6 +1,17 @@
 ---
 name: sites-incriveis
-description: "Transforma qualquer site ou página de vendas numa experiência interativa de rolagem: a rolagem vira a linha do tempo da história. Números sobem sozinhos, títulos se montam palavra por palavra, seções ficam presas na tela enquanto algo acontece, trilhos deslizam de lado, o fundo muda de cor conforme a pessoa desce, vídeo avança quadro a quadro sob o dedo. Antes de construir, entrevista a pessoa (vibe, jornada, emoções, pico, assets que já existem) e planeja a cena — por isso cada site sai diferente. No final, verifica o próprio trabalho tirando screenshots da página rolando. Use quando pedirem: \"deixa meu site vivo\", \"site que anima quando rola\", \"página estilo Apple\", \"scrollytelling\", \"refaz minha página de vendas\", \"meu site parece template\", \"quero um site que prende a pessoa\", \"site interativo de rolagem\".\n"
+description: >
+  Transforma qualquer site ou página de vendas numa experiência interativa de
+  rolagem: a rolagem vira a linha do tempo da história. Números sobem sozinhos,
+  títulos se montam palavra por palavra, seções ficam presas na tela enquanto
+  algo acontece, trilhos deslizam de lado, o fundo muda de cor conforme a pessoa
+  desce, vídeo avança quadro a quadro sob o dedo. Antes de construir, entrevista
+  a pessoa (vibe, jornada, emoções, pico, assets que já existem) e planeja a
+  cena — por isso cada site sai diferente. No final, verifica o próprio
+  trabalho tirando screenshots da página rolando. Use quando pedirem:
+  "deixa meu site vivo", "site que anima quando rola", "página estilo Apple",
+  "scrollytelling", "refaz minha página de vendas", "meu site parece template",
+  "quero um site que prende a pessoa", "site interativo de rolagem".
 ---
 
 # Sites Incríveis
