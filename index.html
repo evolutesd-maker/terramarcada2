@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terra Marcada | Mapeamento territorial em Ijuí</title>
+  <meta name="description" content="Terra Marcada: mapeamento territorial com drone em Ijuí e região. Georreferenciamento, ortomosaicos, curvas de nível e modelos digitais de terreno com precisão.">
+  <meta name="theme-color" content="#1f3a2e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f3a2e'/%3E%3Cpath d='M16 6c-4 0-7 3-7 7 0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z' fill='none' stroke='%23d9e4c8' stroke-width='2'/%3E%3Ccircle cx='16' cy='13' r='2.5' fill='%23d9e4c8'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a href="#inicio" class="brand" aria-label="Terra Marcada – início">
+      <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+        <rect width="32" height="32" rx="9" fill="currentColor"/>
+        <path d="M16 6c-4 0-7 3-7 7 0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" fill="none" stroke="#d9e4c8" stroke-width="1.8"/>
+        <circle cx="16" cy="13" r="2.4" fill="#d9e4c8"/>
+      </svg>
+      <span>Terra<b>Marcada</b></span>
+    </a>
+    <nav class="links" id="links" aria-label="Principal">
+      <a href="#servicos">Serviços</a>
+      <a href="#drone">Tecnologia</a>
+      <a href="#processo">Processo</a>
+      <a href="#aplicacoes">Aplicações</a>
+      <a href="#contato" class="btn btn-sm magnetic">Solicitar orçamento</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="links"><span></span><span></span></button>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <svg class="contours" id="contours" aria-hidden="true" preserveAspectRatio="xMidYMid slice"></svg>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow reveal"><span class="dot"></span> Mapeamento territorial · Ijuí, RS</p>
+          <h1 class="reveal" style="--d:.08s">Cada metro do seu território, <em>mapeado com precisão.</em></h1>
+          <p class="lead reveal" style="--d:.16s">Utilizamos drones de última geração para transformar o terreno em dados confiáveis: limites, relevo, áreas e imagens de alta resolução para o campo e a cidade.</p>
+          <div class="cta reveal" style="--d:.24s">
+            <a href="#contato" class="btn magnetic">Solicitar orçamento
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#servicos" class="btn btn-ghost magnetic">Conhecer serviços</a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" style="--d:.2s">
+          <div class="orb"></div>
+          <div class="drone-wrap" id="droneWrap">
+            <img src="assets/drone-dji-air-3s.png" alt="Drone DJI Air 3S utilizado pela Terra Marcada" width="720" height="720" class="drone" fetchpriority="high">
+          </div>
+          <div class="shadow"></div>
+          <div class="chip chip-a"><i></i> Câmera dupla · 4K/60</div>
+          <div class="chip chip-b"><i></i> Sensores omnidirecionais</div>
+          <div class="chip chip-c"><i></i> Precisão centimétrica*</div>
+        </div>
+      </div>
+      <a href="#numeros" class="scroll" aria-label="Rolar para baixo"><span></span></a>
+    </section>
+
+    <!-- NÚMEROS -->
+    <section class="stats" id="numeros">
+      <div class="wrap stats-grid">
+        <div class="stat reveal"><strong data-count="1" data-prefix="até " data-suffix=" cm">0</strong><span>de precisão com apoio RTK*</span></div>
+        <div class="stat reveal" style="--d:.08s"><strong data-count="45" data-prefix="até " data-suffix=" min">0</strong><span>de voo por bateria</span></div>
+        <div class="stat reveal" style="--d:.16s"><strong data-count="100" data-suffix=" ha">0</strong><span>mapeados por dia, em média**</span></div>
+        <div class="stat reveal" style="--d:.24s"><strong data-count="48" data-suffix=" MP">0</strong><span>de resolução nas imagens</span></div>
+      </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section class="section" id="servicos">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="eyebrow reveal">Serviços</p>
+          <h2 class="reveal" style="--d:.06s">Do voo ao dado pronto para decidir.</h2>
+          <p class="reveal" style="--d:.12s">Soluções para produtores rurais, engenharia, arquitetura, construtoras e poder público.</p>
+        </header>
+        <div class="cards">
+          <article class="card tilt reveal">
+            <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.5-7-12a7 7 0 0114 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
+            <h3>Georreferenciamento</h3>
+            <p>Levantamento de limites e áreas com coordenadas precisas, base para regularização e documentação.</p>
+            <a href="#contato" class="more">Saiba mais <i>→</i></a>
+          </article>
+          <article class="card tilt reveal" style="--d:.08s">
+            <span class="ico"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/></svg></span>
+            <h3>Ortomosaico</h3>
+            <p>Imagem aérea contínua, em alta resolução e escala real, ideal para medir, planejar e acompanhar.</p>
+            <a href="#contato" class="more">Saiba mais <i>→</i></a>
+          </article>
+          <article class="card tilt reveal" style="--d:.16s">
+            <span class="ico"><svg viewBox="0 0 24 24"><path d="M2 18c3-1 4-5 7-5s4 3 7 3 4-4 6-5"/><path d="M2 13c3-1 4-5 7-5s4 3 7 3 4-4 6-5"/><path d="M2 8c3-1 4-4 7-4"/></svg></span>
+            <h3>Curvas de nível e relevo</h3>
+            <p>Modelos digitais de terreno e superfície para terraplenagem, drenagem e planejamento de uso do solo.</p>
+            <a href="#contato" class="more">Saiba mais <i>→</i></a>
+          </article>
+          <article class="card tilt reveal">
+            <span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10z"/><path d="M9 20v-6h6v6"/></svg></span>
+            <h3>Cálculo de volumes</h3>
+            <p>Medição de estoques, aterros e cortes com rapidez e sem expor equipes a áreas de risco.</p>
+            <a href="#contato" class="more">Saiba mais <i>→</i></a>
+          </article>
+          <article class="card tilt reveal" style="--d:.08s">
+            <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 22V10"/><path d="M12 10c0-4 3-6 7-6 0 4-3 6-7 6z"/><path d="M12 14c0-3-2-5-6-5 0 3 2 5 6 5z"/></svg></span>
+            <h3>Monitoramento de lavouras</h3>
+            <p>Imagens periódicas para acompanhar o desenvolvimento, identificar falhas e apoiar decisões de manejo.</p>
+            <a href="#contato" class="more">Saiba mais <i>→</i></a>
+          </article>
+          <article class="card tilt reveal" style="--d:.16s">
+            <span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M9 4v16"/></svg></span>
+            <h3>Loteamentos e projetos</h3>
+            <p>Planta planialtimétrica e base cartográfica para loteamentos, obras e estudos de viabilidade.</p>
+            <a href="#contato" class="more">Saiba mais <i>→</i></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- DRONE -->
+    <section class="section drone-sec" id="drone">
+      <div class="wrap drone-grid">
+        <div class="drone-stage reveal">
+          <svg class="rings" viewBox="0 0 400 400" aria-hidden="true">
+            <circle cx="200" cy="200" r="190"/><circle cx="200" cy="200" r="145"/><circle cx="200" cy="200" r="100"/>
+          </svg>
+          <img src="assets/drone-dji-air-3s.png" alt="DJI Air 3S dobrado" loading="lazy" width="720" height="720" class="float-img">
+        </div>
+        <div>
+          <p class="eyebrow reveal">Tecnologia</p>
+          <h2 class="reveal" style="--d:.06s">DJI Air 3S: leve, ágil e preciso.</h2>
+          <p class="reveal" style="--d:.12s" >Nosso equipamento combina câmera dupla com sensores de obstáculos em todas as direções, para voos seguros e imagens nítidas mesmo em terrenos de difícil acesso.</p>
+          <ul class="specs">
+            <li class="reveal"><b>Câmera grande-angular</b><span>Sensor CMOS de 1 polegada para imagens detalhadas e alto alcance dinâmico.</span></li>
+            <li class="reveal" style="--d:.06s"><b>Teleobjetiva média 3×</b><span>Aproximação para registrar detalhes sem se aproximar do alvo.</span></li>
+            <li class="reveal" style="--d:.12s"><b>Detecção omnidirecional</b><span>Sensores e LiDAR frontal para voar com segurança em áreas complexas.</span></li>
+            <li class="reveal" style="--d:.18s"><b>Transmissão de longo alcance</b><span>Controle estável e vídeo ao vivo, com boa autonomia por bateria.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESSO -->
+    <section class="section" id="processo">
+      <div class="wrap">
+        <header class="sec-head center">
+          <p class="eyebrow reveal">Processo</p>
+          <h2 class="reveal" style="--d:.06s">Simples, transparente e rápido.</h2>
+        </header>
+        <ol class="steps">
+          <li class="step reveal"><span class="num">01</span><h3>Contato</h3><p>Entendemos sua necessidade e a área a ser mapeada.</p></li>
+          <li class="step reveal" style="--d:.1s"><span class="num">02</span><h3>Planejamento</h3><p>Definimos plano de voo, pontos de controle e prazos.</p></li>
+          <li class="step reveal" style="--d:.2s"><span class="num">03</span><h3>Voo em campo</h3><p>Captura de imagens com o drone, com segurança e eficiência.</p></li>
+          <li class="step reveal" style="--d:.3s"><span class="num">04</span><h3>Processamento</h3><p>Geramos mapas, modelos e relatórios prontos para uso.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- CARROSSEL FLUTUANTE -->
+    <section class="section carousel-sec" id="aplicacoes">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="eyebrow reveal">Aplicações</p>
+          <h2 class="reveal" style="--d:.06s">O que podemos revelar no seu terreno.</h2>
+        </header>
+      </div>
+      <div class="carousel" id="carousel" aria-label="Aplicações do mapeamento, arraste para navegar">
+        <div class="track" id="track"></div>
+      </div>
+      <p class="hint">Arraste ou passe o mouse para pausar</p>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="section contact" id="contato">
+      <div class="wrap">
+        <div class="contact-card reveal">
+          <svg class="contours small" id="contours2" aria-hidden="true" preserveAspectRatio="xMidYMid slice"></svg>
+          <div class="contact-in">
+            <p class="eyebrow light">Vamos mapear?</p>
+            <h2>Conte sobre sua área e receba um orçamento.</h2>
+            <p>Atendemos Ijuí e toda a região Noroeste do Rio Grande do Sul.</p>
+          </div>
+          <form class="form" id="form" novalidate>
+            <label>Nome<input name="nome" required autocomplete="name" placeholder="Seu nome"></label>
+            <label>Tipo de serviço
+              <select name="servico">
+                <option>Georreferenciamento</option><option>Ortomosaico</option><option>Curvas de nível / relevo</option>
+                <option>Cálculo de volumes</option><option>Monitoramento de lavouras</option><option>Outro</option>
+              </select>
+            </label>
+            <label>Mensagem<textarea name="msg" rows="3" placeholder="Localização, tamanho da área, prazo…"></textarea></label>
+            <button class="btn btn-light magnetic" type="submit">Enviar pelo WhatsApp</button>
+            <p class="note" id="note" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap foot">
+      <div class="brand light"><span>Terra<b>Marcada</b></span></div>
+      <p>Mapeamento territorial com drone · Ijuí, RS</p>
+      <p class="small">© <span id="year"></span> Terra Marcada. Todos os direitos reservados.</p>
+    </div>
+    <div class="wrap"><p class="fine">* A precisão centimétrica depende de apoio RTK/pontos de controle e das condições do local. ** Valor médio estimado, varia conforme relevo e tipo de serviço.</p></div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
