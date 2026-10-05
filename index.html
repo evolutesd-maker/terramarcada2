@@ -43,6 +43,23 @@
   WhatsApp
 </a>
 
+<!-- Rota de voo: mostra onde a pessoa está na página -->
+<nav class="plv" id="plv" aria-label="Progresso da página">
+  <div class="plv-pista">
+    <span class="plv-fill" id="plvFill"></span>
+    <ol>
+      <li><a href="#terra" data-n="Início"><span class="sr">Início</span></a></li>
+      <li><a href="#problema" data-n="Por que medir"><span class="sr">Por que medir</span></a></li>
+      <li><a href="#voo" data-n="O voo"><span class="sr">O voo</span></a></li>
+      <li><a href="#mapa" data-n="O mapa"><span class="sr">O mapa</span></a></li>
+      <li><a href="#rigor" data-n="O rigor"><span class="sr">O rigor</span></a></li>
+      <li><a href="#servicos" data-n="Serviços"><span class="sr">Serviços</span></a></li>
+      <li><a href="#contato" data-n="Contato"><span class="sr">Contato</span></a></li>
+    </ol>
+    <span class="plv-drone" id="plvDrone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12l-6-6M12 12l6-6M12 12l-6 6M12 12l6 6"/><circle cx="12" cy="12" r="2"/></svg></span>
+  </div>
+</nav>
+
 <main>
 
 <!-- 1 · TERRA -->
@@ -109,7 +126,7 @@
 </section>
 
 <!-- 3 · O VOO -->
-<section data-fx-fixa data-fx-altura="4" data-fx-etapas="3" class="voo escuro" id="voo">
+<section data-fx-fixa data-fx-altura="3" data-fx-etapas="3" class="voo escuro" id="voo">
   <div class="fx-palco">
     <div class="voo-bg" aria-hidden="true">
       <div class="voo-pan" data-fx-y="70,-70"><canvas data-terra="aerial" class="terra-cv"></canvas></div>
@@ -132,6 +149,7 @@
             <a class="btn" data-wa="Olá, Terra Marcada! Quero ver o meu terreno de cima, com mapeamento por drone." href="https://wa.me/5555999345858">Quero ver meu terreno de cima</a>
           </div>
         </div>
+        <div class="seg" aria-hidden="true"><i></i><i></i><i></i></div>
       </div>
       <div class="palco-dir">
         <div class="drone-cena">
@@ -150,10 +168,10 @@
 </section>
 
 <!-- 4 · O MAPA SE FORMA (PICO) -->
-<section data-fx-fixa data-fx-altura="5" data-fx-etapas="3" class="pico claro" id="mapa">
+<section data-fx-fixa data-fx-altura="3.6" data-fx-etapas="3" class="pico claro" id="mapa">
   <div class="fx-palco">
     <div class="pico-grade">
-      <div class="prancha" id="prancha">
+      <div class="prancha" id="prancha" data-fx-escala="0.96,1.04" data-fx-y="14,-14">
         <canvas data-terra="aerial" class="terra-cv base"></canvas>
         <div class="prancha-mapa" id="pranchaMapa"><canvas data-terra="map" class="terra-cv"></canvas></div>
         <div class="scan" id="scan"></div>
@@ -183,6 +201,7 @@
             <a class="btn" data-wa="Olá, Terra Marcada! Quero um mapa da minha área, com limites e curvas de nível." href="https://wa.me/5555999345858">Quero esse mapa da minha área</a>
           </div>
         </div>
+        <div class="seg" aria-hidden="true"><i></i><i></i><i></i></div>
       </div>
     </div>
   </div>
@@ -216,7 +235,7 @@
 </section>
 
 <!-- 6 · REURB E SERVIÇOS -->
-<section data-fx-fixa data-fx-altura="3.2" class="servicos claro" id="servicos">
+<section data-fx-fixa data-fx-altura="2.6" class="servicos claro" id="servicos">
   <div class="fx-palco">
     <div data-fx="trilho" class="trilho">
       <article class="painel painel-reurb">

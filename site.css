@@ -290,3 +290,40 @@ p{max-width:34em}
 .wa-pill + .topo-btn{bottom:76px}
 @media (max-width:900px){.topo-btn{right:10px;bottom:10px}.wa-pill + .topo-btn{bottom:64px}}
 @media (prefers-reduced-motion:reduce){.topo-btn{transition:none}.topo-btn:hover{transform:none}}
+
+/* medidor de etapas: enche continuamente com a rolagem da cena */
+.seg{display:flex;gap:6px;margin-top:var(--e3)}
+.seg i{position:relative;flex:1;height:5px;border-radius:5px;overflow:hidden;background:rgba(255,255,255,.2)}
+.seg i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--ouro),var(--ouro-claro));transform-origin:0 50%;transform:scaleX(clamp(0,var(--f),1))}
+.seg i:nth-child(1){--f:calc(var(--progresso,0)*3)}
+.seg i:nth-child(2){--f:calc(var(--progresso,0)*3 - 1)}
+.seg i:nth-child(3){--f:calc(var(--progresso,0)*3 - 2)}
+.claro-vidro .seg i{background:rgba(11,47,36,.16)}
+.claro-vidro .seg i::after{background:linear-gradient(90deg,var(--pinheiro),var(--musgo))}
+.fx-reduzido .seg{display:none}
+
+/* rota de voo: trilha lateral de progresso com paradas por cena */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.plv{position:fixed;z-index:42;right:12px;top:57%;translate:0 -50%;width:32px;height:min(52vh,420px)}
+.plv-pista{position:relative;height:100%;border-radius:20px;background:linear-gradient(180deg,rgba(6,28,21,.7),rgba(20,80,60,.6));border:1px solid rgba(230,196,94,.3);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.plv-pista::before{content:"";position:absolute;left:50%;top:15px;bottom:15px;width:2px;margin-left:-1px;background:rgba(243,238,223,.22)}
+.plv-fill{position:absolute;left:50%;top:15px;bottom:15px;width:3px;margin-left:-1.5px;background:linear-gradient(var(--ouro-claro),var(--ouro));box-shadow:0 0 8px rgba(230,196,94,.7);transform-origin:50% 0;transform:scaleY(var(--pos,0))}
+.plv ol{position:absolute;inset:15px 0;list-style:none;display:flex;flex-direction:column;justify-content:space-between;align-items:center}
+.plv li{position:relative;width:0;height:0}
+.plv a{position:absolute;left:-7px;top:-7px;width:14px;height:14px;border-radius:50%;border:2px solid rgba(243,238,223,.75);background:var(--abismo);transition:background .3s,border-color .3s,transform .3s var(--suave)}
+.plv a.passou{background:var(--ouro);border-color:var(--ouro-claro)}
+.plv a.cur{transform:scale(1.35);background:var(--ouro-claro);border-color:#fff}
+.plv a::after{content:attr(data-n);position:absolute;right:26px;top:50%;translate:8px -50%;white-space:nowrap;padding:5px 12px;border-radius:999px;background:var(--abismo);border:1px solid rgba(230,196,94,.4);color:var(--areia);font:600 .8rem var(--titulo);opacity:0;pointer-events:none;transition:opacity .3s,translate .3s var(--suave)}
+.plv a:hover::after,.plv a:focus-visible::after,.plv a.flash::after{opacity:1;translate:0 -50%}
+.plv-drone{position:absolute;left:50%;top:0;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:linear-gradient(135deg,var(--ouro-claro),var(--ouro));box-shadow:0 0 0 5px rgba(230,196,94,.25),0 6px 14px -4px rgba(0,0,0,.6);display:grid;place-items:center;pointer-events:none;will-change:transform}
+.plv-drone svg{width:15px;height:15px;fill:none;stroke:var(--abismo);stroke-width:2;stroke-linecap:round}
+@media (max-width:900px){
+  .plv{right:0;left:0;top:0;translate:none;width:auto;height:6px}
+  .plv-pista{border-radius:0;border:0;background:rgba(6,28,21,.6);backdrop-filter:none}
+  .plv-pista::before{left:4px;right:4px;top:50%;bottom:auto;width:auto;height:2px;margin:-1px 0 0}
+  .plv-fill{left:4px;right:4px;top:0;bottom:0;width:auto;margin:0;transform-origin:0 50%;transform:scaleX(var(--pos,0))}
+  .plv ol{inset:0 4px;flex-direction:row}
+  .plv a{left:-4px;top:-1px;width:8px;height:8px;border-width:1.5px}
+  .plv a::after,.plv-drone{display:none}
+}
+@media (prefers-reduced-motion:reduce){.plv a,.plv a::after{transition:none}}
