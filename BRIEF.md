@@ -35,3 +35,6 @@ calma → tensa → sobe → **PICO** → calma firme → emocional → calma re
 - Dra. Sandra Bado: qual título/função devo exibir (ex.: advogada responsável pela REURB)? Posso usar o nome dela no site?
 - "Garantia de sua casa ou lote regularizados" (do folheto): confirma que pode ir como promessa no site?
 - Há registros profissionais (CREA, CFT, credenciamento do piloto) para mostrar na cena do rigor?
+
+## Pendente para o futuro (pedido do cliente)
+- Perguntar de novo sobre a Dra. Sandra Bado. O cliente vai enviar foto, registro no CREA, qualificação, uma frase dela e demais dados para entrarem no site (provavelmente na cena 5, o rigor). Até lá, o site segue sem ela.
