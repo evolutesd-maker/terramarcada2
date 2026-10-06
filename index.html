@@ -113,43 +113,42 @@
 </section>
 
 <!-- 3 · O VOO -->
-<section data-fx-fixa data-fx-altura="3" data-fx-etapas="3" class="voo escuro" id="voo" data-curva="areia-2">
-  <div class="fx-palco">
-    <div class="voo-bg" aria-hidden="true">
-      <div class="voo-pan" data-fx-y="70,-70"><canvas data-terra="aerial" class="terra-cv"></canvas></div>
-      <div class="voo-veu"></div>
-    </div>
-    <div class="voo-grade">
-      <div class="painel-vidro leg-voo">
-        <div class="etapas">
-          <div class="fx-etapa">
-            <h2>Planejamos o voo.</h2>
-            <p>Antes de decolar, estudamos a área, o relevo e o melhor plano de voo para cada terreno.</p>
-          </div>
-          <div class="fx-etapa">
-            <h2>O drone registra cada detalhe.</h2>
-            <p>O DJI Air 3S, com câmera dupla e sensores em todas as direções, sobrevoa a área e captura imagens de alta resolução.</p>
-          </div>
-          <div class="fx-etapa">
-            <h2>E o GNSS confere em campo.</h2>
-            <p>Em solo, o equipamento GNSS marca pontos de referência para que o mapa bata com o terreno.</p>
-            <a class="btn" data-wa="Olá, Terra Marcada! Quero ver o meu terreno de cima, com mapeamento por drone." href="https://wa.me/5555999345858">Quero ver meu terreno de cima</a>
-          </div>
-        </div>
-        <div class="seg" aria-hidden="true"><i></i><i></i><i></i></div>
+<section class="voo escuro" id="voo" data-curva="areia-2">
+  <div class="voo-bg" aria-hidden="true">
+    <div class="voo-pan" data-fx-paralaxe="0.08"><canvas data-terra="aerial" class="terra-cv"></canvas></div>
+    <div class="voo-veu"></div>
+  </div>
+  <div class="voo-in">
+    <header class="voo-topo">
+      <h2 data-fx="subir">Do planejamento ao campo, com drone e GNSS.</h2>
+      <p class="lead" data-fx="subir" data-fx-atraso="100">Três etapas para o mapa bater com o terreno.</p>
+    </header>
+    <div class="voo-corpo">
+      <div class="drone-cena" data-fx="crescer">
+        <div class="radar"><i></i><i></i></div>
+        <img src="assets/drone-dji-air-3s.webp" alt="Drone DJI Air 3S sobrevoando a área" width="720" height="720" class="drone">
+        <span class="chama c1">Câmera dupla</span>
+        <span class="chama c2">Sensores omnidirecionais</span>
       </div>
-      <div class="palco-dir">
-        <div class="drone-cena">
-          <div class="radar"><i></i><i></i></div>
-          <img src="assets/drone-dji-air-3s.webp" alt="Drone DJI Air 3S sobrevoando a área" width="720" height="720" class="drone" data-fx-y="140,-20" data-fx-giro="-5,4" data-fx-escala="0.8,1.08">
-          <span class="chama c1">Câmera dupla</span>
-          <span class="chama c2">Sensores omnidirecionais</span>
-        </div>
-        <figure class="foto-campo">
-          <img src="assets/campo-gnss.jpg" alt="Técnico da Terra Marcada operando equipamento GNSS sobre tripé, em campo" width="335" height="597" loading="lazy" decoding="async">
-          <figcaption>Equipamento GNSS em campo</figcaption>
-        </figure>
-      </div>
+      <ol class="rota-passos">
+        <li class="passo-v" data-fx="direita">
+          <h3>Planejamos o voo.</h3>
+          <p>Antes de decolar, estudamos a área, o relevo e o melhor plano de voo para cada terreno.</p>
+        </li>
+        <li class="passo-v" data-fx="direita" data-fx-atraso="120">
+          <h3>O drone registra cada detalhe.</h3>
+          <p>O DJI Air 3S, com câmera dupla e sensores em todas as direções, sobrevoa a área e captura imagens de alta resolução.</p>
+        </li>
+        <li class="passo-v" data-fx="direita" data-fx-atraso="240">
+          <h3>E o GNSS confere em campo.</h3>
+          <p>Em solo, o equipamento GNSS marca pontos de referência para que o mapa bata com o terreno.</p>
+          <figure class="foto-campo">
+            <img src="assets/campo-gnss.jpg" alt="Técnico da Terra Marcada operando equipamento GNSS sobre tripé, em campo" width="335" height="597" loading="lazy" decoding="async">
+            <figcaption>Equipamento GNSS em campo</figcaption>
+          </figure>
+          <a class="btn" data-wa="Olá, Terra Marcada! Quero ver o meu terreno de cima, com mapeamento por drone." href="https://wa.me/5555999345858">Quero ver meu terreno de cima</a>
+        </li>
+      </ol>
     </div>
   </div>
 </section>
@@ -223,44 +222,46 @@
 </section>
 
 <!-- 6 · REURB E SERVIÇOS -->
-<section data-fx-fixa data-fx-altura="2.6" class="servicos claro" id="servicos" data-curva="floresta">
-  <div class="fx-palco">
-    <div data-fx="trilho" class="trilho">
-      <article class="painel painel-reurb">
-        <h2>REURB: regularização que dá escritura a quem mora.</h2>
-        <p>REURB é a Regularização Fundiária Urbana: um conjunto de medidas jurídicas, ambientais e sociais para legalizar assentamentos informais e dar escritura a moradores de áreas urbanas.</p>
-        <ul class="fatos">
-          <li><strong><span data-fx="contar" data-fx-fim="12">12</span> anos</strong>de experiência</li>
-          <li><strong>Equipe</strong>especializada</li>
-          <li><strong>Garantia</strong>de sua casa ou lote regularizados</li>
-        </ul>
-      </article>
-      <article class="painel cartao">
+<section class="servicos claro" id="servicos" data-curva="floresta">
+  <div class="srv-in">
+    <div class="reurb-bloco">
+      <div>
+        <h2 data-fx="subir">REURB: regularização que dá escritura a quem mora.</h2>
+        <p data-fx="subir" data-fx-atraso="100">REURB é a Regularização Fundiária Urbana: um conjunto de medidas jurídicas, ambientais e sociais para legalizar assentamentos informais e dar escritura a moradores de áreas urbanas.</p>
+      </div>
+      <ul class="fatos" data-fx="subir" data-fx-atraso="150">
+        <li><strong><span data-fx="contar" data-fx-fim="12">12</span> anos</strong>de experiência</li>
+        <li><strong>Equipe</strong>especializada</li>
+        <li><strong>Garantia</strong>de sua casa ou lote regularizados</li>
+      </ul>
+    </div>
+    <div class="srv-grade">
+      <div data-fx="subir" data-fx-atraso="0"><article class="cartao">
         <svg class="cartao-arte" viewBox="0 0 320 88" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="ct"><ellipse cx="190" cy="52" rx="150" ry="62"/><ellipse cx="190" cy="52" rx="112" ry="46"/><ellipse cx="190" cy="52" rx="74" ry="30"/><ellipse cx="190" cy="52" rx="36" ry="14"/></g><polygon class="lt" points="96,66 140,22 214,28 250,58 176,78"/><g class="vt"><circle cx="96" cy="66" r="4"/><circle cx="140" cy="22" r="4"/><circle cx="214" cy="28" r="4"/><circle cx="250" cy="58" r="4"/><circle cx="176" cy="78" r="4"/></g></svg>
         <h3>Propriedades rurais</h3>
         <p>Georreferenciamento, limites e áreas com coordenadas precisas, base para documentação.</p>
         <a class="mais" data-wa="Olá, Terra Marcada! Tenho uma propriedade rural e quero georreferenciar." href="https://wa.me/5555999345858">Quero medir minha propriedade</a>
-      </article>
-      <article class="painel cartao">
+      </article></div>
+      <div data-fx="subir" data-fx-atraso="100"><article class="cartao">
         <svg class="cartao-arte" viewBox="0 0 320 88" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path class="rd2" d="M0 62 C80 40 160 70 320 36"/><g class="lt2"><rect x="30" y="14" width="46" height="30"/><rect x="82" y="10" width="46" height="30"/><rect x="134" y="14" width="46" height="26"/><rect x="190" y="6" width="46" height="26"/><rect x="242" y="2" width="56" height="26"/><rect x="40" y="68" width="52" height="18"/><rect x="100" y="70" width="52" height="18"/><rect x="210" y="52" width="52" height="30"/></g><g class="ct"><path d="M0 28 C60 8 120 24 180 12 S280 0 320 8"/></g></svg>
         <h3>Loteamentos e projetos</h3>
         <p>Curvas de nível, planta planialtimétrica e cálculo de volumes para planejar com segurança.</p>
         <a class="mais" data-wa="Olá, Terra Marcada! Tenho uma obra ou loteamento e preciso de levantamento do terreno." href="https://wa.me/5555999345858">Quero planejar minha obra</a>
-      </article>
-      <article class="painel cartao">
+      </article></div>
+      <div data-fx="subir" data-fx-atraso="200"><article class="cartao">
         <svg class="cartao-arte" viewBox="0 0 320 88" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="lt2"><rect x="24" y="30" width="38" height="46"/><rect x="70" y="14" width="30" height="62"/><rect x="108" y="38" width="44" height="38"/><rect x="160" y="22" width="36" height="54"/><rect x="204" y="44" width="42" height="32"/><rect x="254" y="26" width="40" height="50"/></g><path class="rd2" d="M0 82 H320"/><g class="pin"><circle cx="178" cy="12" r="7"/><circle cx="178" cy="12" r="2.5"/></g></svg>
         <h3>Poder público</h3>
         <p>Mapas e ortomosaicos em alta resolução para apoiar o planejamento e a regularização urbana.</p>
         <a class="mais" data-wa="Olá, Terra Marcada! Represento um órgão público e gostaria de conversar sobre mapeamento." href="https://wa.me/5555999345858">Quero conversar sobre meu município</a>
-      </article>
-      <article class="painel cartao cartao-foto">
+      </article></div>
+      <div class="cartao-foto-wrap" data-fx="subir"><article class="cartao cartao-foto">
         <img src="assets/atendimento.jpg" alt="Atendimento na Terra Marcada, com mapas sobre a mesa" width="194" height="259" loading="lazy" decoding="async">
         <div>
           <h3>Seu imóvel, com escritura.</h3>
           <p>Atendimento próximo, com os mapas sobre a mesa e cada etapa explicada.</p>
           <a class="btn" data-wa="Olá, Terra Marcada! Quero regularizar meu imóvel (REURB)." href="https://wa.me/5555999345858">Quero regularizar meu imóvel</a>
         </div>
-      </article>
+      </article></div>
     </div>
   </div>
 </section>
