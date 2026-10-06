@@ -75,6 +75,21 @@
     sec.prepend(svg);
   });
 
+  /* clicar no link da página em que você já está leva ao topo (em vez de recarregar no meio) */
+  const mesmaPagina = a => {
+    const u = new URL(a.href, location.href);
+    if (u.origin !== location.origin || u.hash || u.search) return false;
+    const norm = p => p.replace(/index\.html$/, '').replace(/\/$/, '');
+    return norm(u.pathname) === norm(location.pathname);
+  };
+  document.addEventListener('click', e => {
+    const a = e.target.closest && e.target.closest('a[href]');
+    if (!a || a.target === '_blank' || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+    if (!mesmaPagina(a)) return;
+    e.preventDefault();
+    scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  });
+
   /* links que abrem em nova aba avisam quem usa leitor de tela */
   $$('a[target="_blank"]').forEach(a => {
     if (!$('.sr', a)) { const s = document.createElement('span'); s.className = 'sr'; s.textContent = ' (abre em nova aba)'; a.appendChild(s); }

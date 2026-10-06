@@ -391,3 +391,6 @@ html.pausado *,html.pausado *::before,html.pausado *::after{animation-play-state
   .faixa-lista{flex-wrap:wrap;justify-content:center;padding:0 var(--gutter)}
 }
 @media (max-width:900px){.faixa{margin:-16px 0 -8px}.faixa-trilho{animation-duration:40s}}
+
+/* destinos de âncora não ficam atrás do menu fixo */
+[id]{scroll-margin-top:96px}

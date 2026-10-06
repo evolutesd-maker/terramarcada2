@@ -4,6 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Política de privacidade | Terra Marcada</title>
+  <script>
+  /* Ao trocar de página pelo menu, abre sempre no topo. Só o botão Voltar restaura a posição anterior. */
+  (function () { try {
+    var n = performance.getEntriesByType('navigation')[0];
+    if (!location.hash && (!n || n.type === 'navigate')) { scrollTo(0, 0); addEventListener('load', function () { if (!scrollY) return; scrollTo(0, 0); }); }
+  } catch (e) { /* sem suporte: comportamento padrão */ } })();
+</script>
   <meta name="description" content="Política de privacidade da Terra Marcada: quais dados coletamos, para que usamos, com quem compartilhamos e como exercer seus direitos pela LGPD.">
   <meta name="theme-color" content="#061C15">
   <meta property="og:image" content="assets/logo.png">
