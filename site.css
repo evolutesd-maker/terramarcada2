@@ -84,11 +84,6 @@ p{max-width:34em}
 @keyframes surge{from{opacity:0;transform:translateY(14px) scale(.9)}to{opacity:1;transform:none}}
 @keyframes bob{50%{translate:0 -12px}}
 
-/* faixa de diferenciais */
-.faixa{position:relative;z-index:3;margin:-46px 0 -30px;transform:rotate(-1.6deg);background:linear-gradient(100deg,var(--ouro-escuro),var(--ouro) 30%,var(--ouro-claro) 55%,var(--ouro) 80%,var(--ouro-escuro));color:var(--abismo);overflow:hidden;box-shadow:0 20px 36px -20px rgba(0,0,0,.5)}
-.faixa-lista{display:flex;flex:none;list-style:none}
-.faixa-lista li{display:flex;align-items:center;gap:var(--e2);padding:18px var(--e2) 18px 0;font-family:var(--titulo);font-weight:800;font-size:clamp(1rem,1.5vw,1.4rem);letter-spacing:-.01em;white-space:nowrap}
-.faixa-lista li::after{content:"";width:12px;height:12px;rotate:45deg;background:var(--abismo);opacity:.8;margin-left:var(--e2)}
 
 /* seções */
 .cena{position:relative;padding:var(--e6) var(--gutter);overflow-x:clip}
@@ -222,7 +217,6 @@ p{max-width:34em}
   .painel-vidro{padding:18px}.etapas p{font-size:var(--s1)}
   .wa-pill{right:10px;bottom:10px;padding:10px 16px}
   .cartao-foto{flex-direction:column;align-items:flex-start}
-  .faixa{margin:-36px 0 -20px}.faixa-lista li{font-size:var(--s2);padding-block:14px}
   .entrega{gap:var(--e2)}
 }
 
@@ -305,10 +299,6 @@ html.pausado *,html.pausado *::before,html.pausado *::after{animation-play-state
 .curva{position:absolute;left:0;top:-1px;width:100%;height:56px;z-index:4;pointer-events:none}
 .curva .fio{fill:none;stroke:var(--ouro);stroke-width:2;opacity:.8;vector-effect:non-scaling-stroke}
 
-/* faixa de diferenciais: estática, sem rolagem automática */
-.faixa-lista{flex-wrap:wrap;justify-content:center;gap:0 var(--e2);padding:0 var(--gutter)}
-.faixa-lista li{padding:16px 0}
-.faixa-lista li:last-child::after{display:none}
 
 /* conteúdo recolhido ou inativo não recebe foco do teclado */
 .etapas .fx-etapa{visibility:hidden;transition:opacity .5s ease,visibility 0s .5s}
@@ -329,9 +319,6 @@ html.pausado *,html.pausado *::before,html.pausado *::after{animation-play-state
   .pausa{min-height:48px;margin-top:6px;justify-content:center}
   .pausa-txt{position:static;width:auto;height:auto;clip:auto;overflow:visible}
   .ficha,.chama,.contatos,.tile{-webkit-backdrop-filter:none;backdrop-filter:none}
-  .faixa-lista li{font-size:var(--s2);padding:10px 0;white-space:normal;text-align:center}
-  .faixa-lista li::after{display:none}
-  .faixa-lista{flex-direction:column;align-items:center;padding:8px var(--e3)}
 }
 @media (prefers-reduced-motion:reduce){.curva .fio{opacity:.8}}
 
@@ -389,3 +376,18 @@ html.pausado *,html.pausado *::before,html.pausado *::after{animation-play-state
 @media (max-width:900px){.nav{width:calc(100% - 20px);max-width:none}.nav-links{margin-left:0}}
 @media (prefers-reduced-motion:reduce){.nav{transition:none}}
 .nav-links a,.nav .btn,.pausa{white-space:nowrap}
+
+/* faixa de diferenciais: fina, em movimento contínuo (letreiro) */
+.faixa{position:relative;z-index:3;margin:-22px 0 -12px;transform:rotate(-1deg);background:linear-gradient(100deg,var(--ouro-escuro),var(--ouro) 30%,var(--ouro-claro) 55%,var(--ouro) 80%,var(--ouro-escuro));color:var(--abismo);overflow:hidden;box-shadow:0 12px 24px -16px rgba(0,0,0,.55)}
+.faixa-trilho{display:flex;width:max-content;animation:letreiro 52s linear infinite;will-change:transform}
+.faixa:hover .faixa-trilho,.faixa:focus-within .faixa-trilho{animation-play-state:paused}
+.faixa-lista{display:flex;flex:none;list-style:none}
+.faixa-lista li{display:flex;align-items:center;white-space:nowrap;padding:9px 0;font-family:var(--titulo);font-weight:800;font-size:clamp(.82rem,1.05vw,.98rem);letter-spacing:.01em}
+.faixa-lista li::after{content:"";flex:none;width:7px;height:7px;rotate:45deg;background:var(--abismo);opacity:.75;margin:0 clamp(18px,2.4vw,34px)}
+@keyframes letreiro{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){
+  .faixa-trilho{animation:none;width:auto;justify-content:center}
+  .faixa-trilho .faixa-lista+.faixa-lista{display:none}
+  .faixa-lista{flex-wrap:wrap;justify-content:center;padding:0 var(--gutter)}
+}
+@media (max-width:900px){.faixa{margin:-16px 0 -8px}.faixa-trilho{animation-duration:40s}}
