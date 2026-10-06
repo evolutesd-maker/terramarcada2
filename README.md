@@ -35,4 +35,4 @@ Verificação de links e arquivos: `node scripts/verificar-links.mjs`.
 - **Terreno de exemplo** da cena do mapa é ilustrativo e está marcado como tal.
 
 ## Acessibilidade e desempenho
-Respeita `prefers-reduced-motion`, tem link "pular para o conteúdo", menu acessível no celular, botão para pausar animações e conteúdo legível sem JavaScript.
+Respeita `prefers-reduced-motion`, o menu recua e esmaece ao descer (no celular some ao descer e volta ao subir), tem link "pular para o conteúdo", menu acessível no celular, botão para pausar animações e conteúdo legível sem JavaScript.

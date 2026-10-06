@@ -7,6 +7,30 @@
   const guardar = (k, v) => { try { localStorage.setItem(k, v); } catch (e) { /* sem armazenamento */ } };
   const ler = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
 
+  /* barra de navegação: encolhe e esmaece ao descer, volta ao subir ou ao passar o mouse */
+  if (nav0()) {
+    const barra = $('#nav'), movel = matchMedia('(max-width: 900px)');
+    let yAnt = 0, ag = false;
+    const tick = () => {
+      ag = false;
+      const y = scrollY, descendo = y > yAnt, aberto = !!$('.nav-links.aberto', barra);
+      barra.classList.toggle('sombra', y > 20);
+      if (movel.matches) {                               // celular: some ao descer, volta ao subir
+        barra.classList.remove('compacto', 'esmaecido');
+        barra.classList.toggle('some', descendo && y > 400 && !aberto);
+      } else {                                           // computador: recua e fica translúcido
+        barra.classList.remove('some');
+        barra.classList.toggle('compacto', y > 80);
+        if (y <= 200 || aberto) barra.classList.remove('esmaecido');
+        else if (Math.abs(y - yAnt) > 2) barra.classList.toggle('esmaecido', descendo);
+      }
+      yAnt = y;
+    };
+    addEventListener('scroll', () => { if (!ag) { ag = true; requestAnimationFrame(tick); } }, { passive: true });
+    tick();
+  }
+  function nav0() { return !!document.getElementById('nav'); }
+
   /* menu do celular */
   const nav = $('#nav'), burger = $('#burger'), menu = $('#menu');
   if (nav && burger && menu) {

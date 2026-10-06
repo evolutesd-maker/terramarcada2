@@ -123,42 +123,10 @@
     rever.addEventListener('click', tocar);
   }
 
-  /* ---------- HUD: a rolagem é o voo ---------- */
-  const hud = $('#hud'), pill = $('#waPill'), nav = $('#nav');
-  const hAlt = $('#hudAlt'), hLat = $('#hudLat'), hLon = $('#hudLon'), hBar = $('#hudBar'), hEsc = $('#hudEsc');
-  const trechos = [['#voo', 0, 100], ['#mapa', 100, 100], ['#rigor', 100, 60], ['#servicos', 60, 20], ['#contato', 20, 0]]
-    .map(([id, a, b]) => ({ el: $(id), a, b }));
-  const hero = $('#terra');
-  let ult = '', yAnt = 0;
+  /* ---------- Botão de WhatsApp: aparece depois do hero ---------- */
+  const pill = $('#waPill'), hero = $('#terra');
   function atualizarHud() {
-    const vh = innerHeight, y = scrollY;
-    // 1) todas as leituras de layout juntas, 2) depois as escritas (evita reflow forçado)
-    const topoHero = hero.getBoundingClientRect().bottom;
-    const topoVoo = trechos[0].el.getBoundingClientRect().top;
-    const caixas = trechos.map(t => t.el.getBoundingClientRect());
-    const altoDoc = document.documentElement.scrollHeight;
-    pill.classList.toggle('on', topoHero < vh * .4);
-    nav.classList.toggle('sombra', y > 20);
-    nav.classList.toggle('some', y > yAnt && y > 500 && !nav.querySelector('.nav-links.aberto'));
-    yAnt = y;
-    hud.classList.toggle('on', topoVoo < vh * .75);
-    let alt = 0;
-    for (let i = 0; i < trechos.length; i++) {
-      const r = caixas[i];
-      if (r.top - vh * .5 > 0) break;
-      alt = trechos[i].a + (trechos[i].b - trechos[i].a) * clamp((vh * .5 - r.top) / r.height);
-    }
-    alt = Math.round(alt);
-    const f = y / Math.max(1, altoDoc - vh);
-    const lat = (28.388 + f * .0042).toFixed(4), lon = (53.914 - f * .0036).toFixed(4);
-    const chave = alt + lat + lon;
-    if (chave === ult) return;
-    ult = chave;
-    hAlt.textContent = alt + ' m';
-    hLat.textContent = lat + '° S';
-    hLon.textContent = lon + '° O';
-    hEsc.textContent = Math.max(5, Math.round(alt * 1.2 / 5) * 5) + ' m';
-    hBar.style.width = (28 + Math.min(alt, 100) * .5) + 'px';
+    pill.classList.toggle('on', hero.getBoundingClientRect().bottom < innerHeight * .4);
   }
 
   /* ---------- Régua de conferência ---------- */

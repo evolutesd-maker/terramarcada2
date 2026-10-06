@@ -14,14 +14,6 @@
   });
   ligarWa();
   const ano = $('#ano'); if (ano) ano.textContent = new Date().getFullYear();
-  const nav = $('#nav'); let yAnt = 0;
-  addEventListener('scroll', () => {
-    const y = scrollY;
-    nav.classList.toggle('sombra', y > 20);
-    nav.classList.toggle('some', y > yAnt && y > 400 && !document.querySelector('.nav-links.aberto'));
-    yAnt = y;
-  }, { passive: true });
-
   /* ---------- QUEM SOMOS: a rota do voo percorre os passos ---------- */
   if (pagina === 'sobre') {
     const cont = $('#passos'), svg = $('#rotaV'), feita = $('.feita', svg), marc = $('#marcador'), passos = $$('.passo');
