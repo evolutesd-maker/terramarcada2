@@ -394,3 +394,26 @@ html.pausado *,html.pausado *::before,html.pausado *::after{animation-play-state
 
 /* destinos de âncora não ficam atrás do menu fixo */
 [id]{scroll-margin-top:96px}
+
+/* abertura com a logo */
+.intro{position:fixed;inset:0;z-index:300;display:none;place-items:center;cursor:pointer;background:radial-gradient(900px 640px at 78% 18%,rgb(var(--musgo-rgb) / .55),transparent 62%),radial-gradient(700px 520px at 6% 94%,rgb(var(--ouro-rgb) / .2),transparent 62%),linear-gradient(160deg,var(--abismo),var(--floresta) 60%,var(--floresta-2));transition:opacity .6s var(--suave),transform .6s var(--suave),visibility 0s .6s}
+.intro.on{display:grid}
+.intro.saindo{opacity:0;transform:scale(1.05);visibility:hidden;pointer-events:none}
+html.com-intro{overflow:hidden}
+html.com-intro,html.com-intro body{background:var(--abismo)}
+.intro-cena{position:relative;width:min(62vw,260px);aspect-ratio:1;display:grid;place-items:center}
+.intro-logo{width:58%;aspect-ratio:1;border-radius:26%;background:#fff;overflow:hidden;box-shadow:0 24px 40px -20px rgba(0,0,0,.6);animation:intro-logo .8s var(--suave) .1s both}
+.intro-logo img{width:100%;height:100%;object-fit:contain;padding:6%}
+.intro-anel{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.intro-anel circle{fill:none;stroke:var(--ouro-claro);stroke-width:1.6;stroke-linecap:butt;stroke-dasharray:1;stroke-dashoffset:1;transform:rotate(-90deg);transform-origin:center;animation:intro-traco 1.3s var(--suave) .35s forwards}
+.intro-anel .marcas path{fill:none;stroke:var(--ouro-claro);stroke-width:1.6;stroke-linecap:butt;stroke-dasharray:1;stroke-dashoffset:1;animation:intro-traco .6s ease-out 1.2s forwards}
+.intro-onda{position:absolute;inset:14%;border-radius:50%;border:1.5px solid rgb(var(--ouro-claro-rgb) / .6);opacity:0;animation:intro-onda 1.6s ease-out .5s 1 both}
+.intro-onda+.intro-onda{animation-delay:.9s}
+@keyframes intro-logo{from{opacity:0;transform:scale(.6) rotate(-8deg)}to{opacity:1;transform:none}}
+@keyframes intro-traco{to{stroke-dashoffset:0}}
+@keyframes intro-onda{0%{opacity:.8;transform:scale(.6)}100%{opacity:0;transform:scale(2.2)}}
+/* enquanto a abertura toca, a entrada do hero fica em espera e começa quando ela se desfaz */
+html.com-intro [data-fx].fx-em-cena:not([data-fx="palavras"]){opacity:0!important;transform:translateY(24px)!important;transition:none!important}
+html.com-intro [data-fx="palavras"].fx-em-cena .fx-palavra{opacity:0!important;transform:translateY(.6em)!important;transition:none!important}
+html.com-intro .hero *,html.com-intro .hero *::before{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){.intro{display:none!important}}

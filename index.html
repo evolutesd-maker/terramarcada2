@@ -11,6 +11,15 @@
     if (!location.hash && (!n || n.type === 'navigate')) { scrollTo(0, 0); addEventListener('load', function () { if (!scrollY) return; scrollTo(0, 0); }); }
   } catch (e) { /* sem suporte: comportamento padrão */ } })();
 </script>
+  <script>
+  /* Abertura com a logo: só na primeira visita da sessão, na página inicial, sem âncora e sem movimento reduzido. */
+  (function () { try {
+    var n = performance.getEntriesByType('navigation')[0], visto = false;
+    try { visto = sessionStorage.getItem('terramarcada-intro') === '1'; } catch (e) { /* sem armazenamento */ }
+    var reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduz && !visto && !location.hash && (!n || n.type !== 'back_forward')) document.documentElement.classList.add('com-intro');
+  } catch (e) { /* sem suporte: o site abre direto */ } })();
+</script>
   <meta name="description" content="Terra Marcada: mapeamento territorial com drone e GNSS em Ijuí e região. Georreferenciamento, relevo, regularização de imóveis e REURB, com cálculo e procedimento em mãos profissionais.">
   <meta name="theme-color" content="#061C15">
   <meta property="og:title" content="Terra Marcada | Mapeamento territorial em Ijuí">
@@ -31,6 +40,38 @@
 </head>
 <body>
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<!-- Abertura: animação curta da logo (some sozinha, ou com clique/Esc) -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro-cena">
+    <i class="intro-onda"></i><i class="intro-onda"></i>
+    <svg class="intro-anel" viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" pathLength="1"/><g class="marcas"><path pathLength="1" d="M50 3V-8"/><path pathLength="1" d="M50 97V108"/><path pathLength="1" d="M3 50H-8"/><path pathLength="1" d="M97 50H108"/></g></svg>
+    <div class="intro-logo"><img src="assets/logo.png" alt="" width="256" height="256"></div>
+  </div>
+</div>
+<script>
+  (function () {
+    var el = document.getElementById('intro'), raiz = document.documentElement;
+    if (!el) return;
+    if (!raiz.classList.contains('com-intro')) { el.parentNode.removeChild(el); return; }
+    el.classList.add('on');
+    var feito = false, timer;
+    function resto() { return [].slice.call(document.body.children).filter(function (c) { return c !== el; }); }
+    function travar() { if (!feito) resto().forEach(function (c) { c.inert = true; }); }   // o teclado não entra no site por baixo da abertura
+    travar(); document.addEventListener('DOMContentLoaded', travar);
+    function fim() {
+      if (feito) return; feito = true; clearTimeout(timer);
+      try { sessionStorage.setItem('terramarcada-intro', '1'); } catch (e) { /* sem armazenamento */ }
+      el.classList.add('saindo');
+      resto().forEach(function (c) { c.inert = false; });
+      raiz.classList.remove('com-intro');                          // libera a entrada do hero enquanto a abertura se desfaz
+      setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 800);
+    }
+    timer = setTimeout(fim, 2300);
+    el.addEventListener('click', fim);
+    addEventListener('keydown', function (e) { if (e.key === 'Escape') fim(); });
+  })();
+</script>
+
 
 <!-- Navegação -->
 <header class="nav" id="nav">
