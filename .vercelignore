@@ -1,0 +1,9 @@
+# Arquivos internos que não precisam ir ao ar
+.claude
+.git
+BRIEF.md
+README.md
+materiais-originais
+scripts
+verificacao
+node_modules
